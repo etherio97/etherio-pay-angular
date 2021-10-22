@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
   async canActivate(): Promise<boolean | UrlTree> {
     const currentUser = await this.authService.getCurrentUser();
     if (!currentUser) {
-      console.log("user is not logged in");
       return this.router.createUrlTree(["auth"]);
     }
     return true;

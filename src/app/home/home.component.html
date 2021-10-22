@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="my-4">
+  <div class="container mx-auto space-y-4">
+    <p>Your phone number is {{ identifier }}</p>
+    <p>Your balance is {{ balance }} kyats</p>
+
+    <button mat-raised-button color="primary" (click)="signOut()">
+      Log Out
+    </button>
+  </div>
+</div>

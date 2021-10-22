@@ -11,11 +11,8 @@ export class GuestGuard implements CanActivate {
   async canActivate(): Promise<boolean | UrlTree> {
     const currentUser = await this.authService.getCurrentUser();
     if (currentUser) {
-      console.log("user is logged in");
-      debugger;
       return this.router.createUrlTree([""]);
     }
-    console.log("hi");
     return true;
   }
 }

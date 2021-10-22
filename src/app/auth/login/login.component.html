@@ -1,1 +1,62 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-200">
+  <div class="rounded shadow bg-gray-50 p-6">
+    <div class="w-80">
+      <form [formGroup]="formGroup" (ngSubmit)="submitLogin()">
+        <!-- Phone Number -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Phone Number</mat-label>
+          <input
+            matInput
+            type="tel"
+            class="tracking-widest"
+            autocapitalize="off"
+            autocomplete="off"
+            formControlName="phoneNumber"
+            [readonly]="isSentingOTP"
+          />
+          <span matPrefix class="pr-2 relative -top-1 tracking-widest">
+            09
+          </span>
+          <span matSuffix *ngIf="!isSentingOTP">
+            <button
+              mat-icon-button
+              (click)="sendOTP()"
+              [disabled]="!phoneNumber?.valid"
+            >
+              <mat-icon>send</mat-icon>
+            </button>
+          </span>
+        </mat-form-field>
+
+        <!-- OTP Code -->
+        <ng-container *ngIf="isSentingOTP">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>OTP</mat-label>
+            <input
+              matInput
+              type="tel"
+              class="tracking-widest"
+              autocapitalize="off"
+              autocomplete="off"
+              formControlName="otpCode"
+              id="otpCode"
+            />
+          </mat-form-field>
+
+          <!-- Confirm Button -->
+          <button
+            mat-flat-button
+            [disabled]="isLoading || !(otpCode?.value && otpCode?.valid)"
+            class="bg-gray-700 rounded-md w-full text-white"
+            type="submit"
+          >
+            Confirm
+          </button>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- for Google Recaptcha -->
+<div id="recaptcha"></div>

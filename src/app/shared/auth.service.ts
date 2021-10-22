@@ -22,13 +22,17 @@ export class AuthService {
     this.currentUser = this.resolveCurrentUser();
   }
 
+  getAuth() {
+    return getAuth(this.app);
+  }
+
   getCurrentUser() {
     return this.currentUser;
   }
 
   private resolveCurrentUser(): Promise<User | null> {
     return new Promise((resolve) => {
-      let unsubscribe = getAuth(this.app).onAuthStateChanged((user) => {
+      let unsubscribe = this.getAuth().onAuthStateChanged((user) => {
         resolve(user);
         unsubscribe();
       });
