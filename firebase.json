@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "./dist",
+    "public": "./dist/etherio-pay-angular/",
     "ignore": [
       "firebase.json",
       "**/.*",
