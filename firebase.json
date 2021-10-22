@@ -1,5 +1,5 @@
 {
-  "hosting": ){
+  "hosting": {
     "public": "./dist/etherio-pay/",
     "ignore": [
       "firebase.json",
