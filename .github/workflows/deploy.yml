@@ -14,12 +14,9 @@ jobs:
       with:
         node-version: 14
     - name: Installing Dependencies
-      run: |
-        npm install
-        npm install -g @angular/cli
-        npm install -g firebase-tools
+      run: npm install
     - name: Build Angular Project
-      run: ng build
+      run: npx ng build
     - name: Deploy to Firebase Hosting
-      run: firebase deploy --project etherio-pay --token ${{ secrets.FIREBASE_TOKEN }}
+      run: npx firebase deploy --project etherio-pay --token ${{ secrets.FIREBASE_TOKEN }}
 
