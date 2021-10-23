@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.otpCode?.value
       );
       await signInWithCredential(this.auth, credential);
-      window.location.reload();
+      this.router.navigate([""]);
     } catch (e) {
       console.error(e);
       this.isLoading = false;

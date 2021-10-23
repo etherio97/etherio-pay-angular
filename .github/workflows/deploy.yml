@@ -3,21 +3,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  start:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup NodeJS
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: Installing Dependencies
-      run: npm install
-    - name: Build Angular Project
-      run: npx ng build
-    - name: Deploy to Firebase Hosting
-      run: |
-        npm i -g firebase-tools
-        firebase deploy --project 'etherio-pay' --token '${{ secrets.FIREBASE_TOKEN }}'
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+          cache: "yarn"
+      - name: Install
+        run: yarn
+      - name: Build
+        run: npx ng build
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Install
+        run: yarn global add firebase-tools
+      - name: Deploy
+        run: firebase deploy --project 'etherio-pay' --token '${{ secrets.FIREBASE_TOKEN }}'

@@ -113,5 +113,8 @@
       }
     }
   },
-  "defaultProject": "etherio-pay"
+  "defaultProject": "etherio-pay",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }

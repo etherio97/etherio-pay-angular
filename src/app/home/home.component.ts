@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { getIdToken, signOut } from "@firebase/auth";
+import { getIdToken } from "@firebase/auth";
 import { AuthService } from "../shared/auth.service";
 
 @Component({
@@ -10,17 +9,14 @@ import { AuthService } from "../shared/auth.service";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
+  token = "";
   balance = "";
   identifier = "";
-  private token!: string;
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
-  ) {}
 
-  async ngOnInit() {
-    let user = await this.authService.getCurrentUser();
+  constructor(private authService: AuthService, private http: HttpClient) {}
+
+  async ngOnInit(): Promise<void> {
+    const user = this.authService.getCurrentUser();
     if (user) {
       this.token = await getIdToken(user);
       const { balance, identifier } = await this.http
@@ -36,10 +32,5 @@ export class HomeComponent implements OnInit {
       this.balance = balance.toLocaleString();
       this.identifier = identifier;
     }
-  }
-
-  async signOut() {
-    await signOut(this.authService.getAuth());
-    window.location.reload();
   }
 }
