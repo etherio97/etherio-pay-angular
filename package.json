@@ -22,6 +22,7 @@
     "@angular/router": "~12.2.0",
     "@ngneat/tailwind": "^7.0.3",
     "firebase": "^9.1.3",
+    "ngx-owl-carousel-o": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

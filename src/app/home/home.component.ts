@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   token = "";
   balance = "";
   identifier = "";
+  isVisibleBalance = false;
 
   constructor(private authService: AuthService, private http: HttpClient) {}
 
@@ -19,7 +20,13 @@ export class HomeComponent implements OnInit {
     const user = this.authService.getCurrentUser();
     if (user) {
       this.token = await getIdToken(user);
-      const { balance, identifier } = await this.http
+      this.identifier =
+        user.phoneNumber?.replace(/^\+95/, "0") ||
+        user.displayName ||
+        user.email ||
+        user.uid;
+
+      const { balance } = await this.http
         .get<{ balance: number; identifier: string }>(
           "https://etherio-pay.herokuapp.com/account",
           {
@@ -30,7 +37,10 @@ export class HomeComponent implements OnInit {
         )
         .toPromise();
       this.balance = balance.toLocaleString();
-      this.identifier = identifier;
     }
+  }
+
+  toggleVisibleBalance() {
+    this.isVisibleBalance = !this.isVisibleBalance;
   }
 }
