@@ -19,8 +19,13 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ConfirmDialogComponent } from "../transfer/confirm-dialog/confirm-dialog.component";
+import { RecievedComponent } from "../history/recieved/recieved.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { SentComponent } from "../history/sent/sent.component";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 const routes: Routes = [
   {
@@ -35,6 +40,14 @@ const routes: Routes = [
       {
         path: "transfer",
         component: TransferComponent,
+      },
+      {
+        path: "recieved",
+        component: RecievedComponent,
+      },
+      {
+        path: "sent",
+        component: SentComponent,
       },
     ],
   },
@@ -51,6 +64,8 @@ const routes: Routes = [
     TransferComponent,
     BackButtonComponent,
     ConfirmDialogComponent,
+    RecievedComponent,
+    SentComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +81,9 @@ const routes: Routes = [
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
   ],
   exports: [RouterModule],
 })

@@ -8,12 +8,8 @@ import { AuthService } from "../shared/auth.service";
 export class GuestGuard implements CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate() {
+  canActivateChild(): boolean | UrlTree {
     const currentUser = this.authService.getCurrentUser();
     return currentUser ? this.router.createUrlTree([""]) : true;
-  }
-
-  canActivateChild(): boolean | UrlTree {
-    return this.canActivate();
   }
 }

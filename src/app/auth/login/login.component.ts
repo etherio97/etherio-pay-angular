@@ -50,11 +50,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
       { size: "invisible" },
       this.auth
     );
+    this.recaptcha.render();
   }
 
   async sendOTP() {
     this.isSentingOTP = true;
-    await this.recaptcha.render();
     this.confirmationResult = await signInWithPhoneNumber(
       this.auth,
       this.localPhone,
@@ -81,6 +81,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.otpCode?.setValue("");
       this.handleError(e);
     }
+  }
+
+  changePhone() {
+    this.isSentingOTP = false;
+    this.otpCode?.setValue("");
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLInputElement>("input#phoneNumber")?.focus();
+      document.querySelector<HTMLInputElement>("input#phoneNumber")?.select();
+    });
   }
 
   private handleError(err: any) {

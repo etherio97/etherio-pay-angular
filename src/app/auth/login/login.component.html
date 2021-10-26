@@ -1,60 +1,73 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-200">
-  <div class="rounded shadow bg-gray-50 p-6">
-    <div class="w-full sm:w-80">
-      <form [formGroup]="formGroup" (ngSubmit)="submitLogin()">
-        <!-- Phone Number -->
+  <div class="w-full rounded shadow bg-gray-50 p-6 sm:w-96">
+    <form [formGroup]="formGroup" (ngSubmit)="submitLogin()">
+      <!-- Phone Number -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Phone Number</mat-label>
+        <span matPrefix class="pr-2 relative -top-1 tracking-widest">
+          09
+        </span>
+        <input
+          matInput
+          type="tel"
+          class="tracking-widest"
+          autocapitalize="off"
+          autocomplete="off"
+          formControlName="phoneNumber"
+          [readonly]="isSentingOTP"
+          id="phoneNumber"
+        />
+        <mat-tooltip matSuffix *ngIf="!isSentingOTP" matTooltip="Send SMS OTP">
+          <button
+            mat-icon-button
+            (click)="sendOTP()"
+            [disabled]="!phoneNumber?.valid"
+          >
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-tooltip>
+      </mat-form-field>
+
+      <!-- OTP Code -->
+      <ng-container *ngIf="isSentingOTP">
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Phone Number</mat-label>
+          <mat-label>OTP</mat-label>
           <input
             matInput
             type="tel"
             class="tracking-widest"
             autocapitalize="off"
             autocomplete="off"
-            formControlName="phoneNumber"
-            [readonly]="isSentingOTP"
+            formControlName="otpCode"
+            id="otpCode"
+            minlength="6"
+            maxlength="6"
           />
-          <span matPrefix class="pr-2 relative -top-1 tracking-widest">
-            09
-          </span>
-          <span matSuffix *ngIf="!isSentingOTP">
-            <button
-              mat-icon-button
-              (click)="sendOTP()"
-              [disabled]="!phoneNumber?.valid"
-            >
-              <mat-icon>send</mat-icon>
-            </button>
-          </span>
         </mat-form-field>
 
-        <!-- OTP Code -->
-        <ng-container *ngIf="isSentingOTP">
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>OTP</mat-label>
-            <input
-              matInput
-              type="tel"
-              class="tracking-widest"
-              autocapitalize="off"
-              autocomplete="off"
-              formControlName="otpCode"
-              id="otpCode"
-            />
-          </mat-form-field>
+        <!-- Confirm Button -->
+        <button
+          mat-flat-button
+          [disabled]="isLoading || !(otpCode?.value && otpCode?.valid)"
+          class="bg-gray-700 rounded-md w-full text-white"
+          type="submit"
+        >
+          Confirm
+        </button>
 
-          <!-- Confirm Button -->
+        <!-- Chage Number -->
+        <div class="my-2 flex justify-center">
           <button
-            mat-flat-button
-            [disabled]="isLoading || !(otpCode?.value && otpCode?.valid)"
-            class="bg-gray-700 rounded-md w-full text-white"
-            type="submit"
+            mat-button
+            type="button"
+            class="text-indigo-500"
+            (click)="changePhone()"
           >
-            Confirm
+            Change Phone Number
           </button>
-        </ng-container>
-      </form>
-    </div>
+        </div>
+      </ng-container>
+    </form>
   </div>
 </div>
 

@@ -5,11 +5,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { MatStepperModule } from "@angular/material/stepper";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { LoginComponent } from "./login/login.component";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const routes: Routes = [
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatStepperModule,
+    MatTooltipModule,
   ],
   exports: [RouterModule],
 })

@@ -17,7 +17,8 @@ export class TransferComponent implements OnInit {
   accounts: string[] = [];
   amount = 0;
   options = [10000, 50000, 100000, 500000];
-  error = false;
+  accountError = false;
+  transactionError = "";
 
   constructor(
     private authService: AuthService,
@@ -43,7 +44,7 @@ export class TransferComponent implements OnInit {
     };
     this.accounts = [];
     this.recipientId = "";
-    this.error = false;
+    this.accountError = false;
     this.http
       .post(
         "https://etherio-pay.herokuapp.com/account/identify",
@@ -56,7 +57,7 @@ export class TransferComponent implements OnInit {
         if (accounts.length) {
           this.recipientId = accounts[0];
         } else {
-          this.error = true;
+          this.accountError = true;
         }
       });
   }
@@ -77,7 +78,7 @@ export class TransferComponent implements OnInit {
       "content-type": "application/json",
     };
     const amount = this.amount;
-    this.error = false;
+    this.accountError = false;
     this.http
       .post(
         "https://etherio-pay.herokuapp.com/transfer",
@@ -89,7 +90,7 @@ export class TransferComponent implements OnInit {
         this.router.navigate(["/"]);
       })
       .catch((err) => {
-        console.error(err);
+        this.transactionError = err.error?.error;
       });
   }
 

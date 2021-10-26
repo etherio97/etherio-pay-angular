@@ -1,7 +1,13 @@
-<div class="mt-4">
+<div class="py-4">
   <app-back-button></app-back-button>
-
   <div class="mt-2 mx-4">
+    <div
+      class="mb-4 w-full rounded-lg py-4 px-2 bg-red-500 text-white text-center"
+      *ngIf="transactionError"
+    >
+      {{transactionError}}
+    </div>
+
     <mat-form-field appearance="outline" class="w-full">
       <mat-label>Recipent Phone</mat-label>
       <input
@@ -34,7 +40,7 @@
           />
         </svg>
       </button>
-      <mat-hint *ngIf="error">
+      <mat-hint *ngIf="accountError">
         This phone number does not have Etherio Pay.
       </mat-hint>
     </mat-form-field>
