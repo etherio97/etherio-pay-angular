@@ -1,0 +1,19 @@
+<mat-dialog-content>
+  <div class="w-72 container">
+    <h2 class="font-bold text-lg">Are you sure?</h2>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="flex justify-end">
+  <button mat-dialog-close mat-flat-button class="text-white bg-gray-500">
+    Cancel
+  </button>
+  <button
+    mat-flat-button
+    mat-dialog-close
+    class="text-white"
+    color="primary"
+    (click)="confirm()"
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

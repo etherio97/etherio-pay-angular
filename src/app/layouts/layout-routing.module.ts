@@ -9,6 +9,18 @@ import { HomeComponent } from "../home/home.component";
 import { MatIconModule } from "@angular/material/icon";
 import { CarouselModule } from "ngx-owl-carousel-o";
 import { BannerComponent } from "../home/banner/banner.component";
+import { HeaderComponent } from "../home/header/header.component";
+import { FeatureButtonComponent } from "../home/feature-button/feature-button.component";
+import { FeatureButtonsComponent } from "../home/feature-buttons/feature-buttons.component";
+import { TransferComponent } from "../transfer/transfer.component";
+import { BackButtonComponent } from "../components/back-button/back-button.component";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatDialogModule } from "@angular/material/dialog";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ConfirmDialogComponent } from "../transfer/confirm-dialog/confirm-dialog.component";
 
 const routes: Routes = [
   {
@@ -20,12 +32,26 @@ const routes: Routes = [
         path: "",
         component: HomeComponent,
       },
+      {
+        path: "transfer",
+        component: TransferComponent,
+      },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [LayoutComponent, HomeComponent, BannerComponent],
+  declarations: [
+    LayoutComponent,
+    HomeComponent,
+    BannerComponent,
+    HeaderComponent,
+    FeatureButtonComponent,
+    FeatureButtonsComponent,
+    TransferComponent,
+    BackButtonComponent,
+    ConfirmDialogComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -33,6 +59,13 @@ const routes: Routes = [
     HttpClientModule,
     MatIconModule,
     CarouselModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatDialogModule,
   ],
   exports: [RouterModule],
 })

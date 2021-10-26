@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { getIdToken } from "@firebase/auth";
+import { Router } from "@angular/router";
+import { getIdToken, signOut } from "@firebase/auth";
 import { AuthService } from "../shared/auth.service";
 
 @Component({
@@ -13,8 +14,17 @@ export class HomeComponent implements OnInit {
   balance = "";
   identifier = "";
   isVisibleBalance = false;
+  banners = [
+    "./assets/img/banner-1.jpg",
+    "./assets/img/banner-2.jpg",
+    "./assets/img/banner-3.jpg",
+  ];
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   async ngOnInit(): Promise<void> {
     const user = this.authService.getCurrentUser();
@@ -40,7 +50,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  toggleVisibleBalance() {
-    this.isVisibleBalance = !this.isVisibleBalance;
+  async signOut() {
+    await signOut(this.authService.getAuth());
+    this.router.navigate(["auth"]);
   }
 }
