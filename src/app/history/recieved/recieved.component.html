@@ -1,5 +1,6 @@
 <div class="py-4">
   <app-back-button></app-back-button>
+  <h2 class="text-lg font-bold text-indigo-600 mt-4 mb-2">Recieved Logs</h2>
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <table class="w-full text-center" mat-table [dataSource]="dataSource">
     <ng-container

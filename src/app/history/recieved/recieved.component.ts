@@ -11,7 +11,7 @@ import { AuthService } from "src/app/shared/auth.service";
 export class RecievedComponent implements OnInit, AfterViewInit {
   transactions: Array<any> = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
-  displayedColumns = ["senderName", "recipientName", "amount", "createdAt"];
+  displayedColumns = ["senderName", "amount", "createdAt"];
   loading = false;
   private token = "";
 
