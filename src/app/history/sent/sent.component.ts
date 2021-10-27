@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
+import { AccountService } from "src/app/shared/account.service";
 import { AuthService } from "src/app/shared/auth.service";
 
 @Component({
@@ -15,7 +15,7 @@ export class SentComponent implements OnInit, AfterViewInit {
   loading = false;
   private token = "";
 
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  constructor(private auth: AuthService, private account: AccountService) {}
 
   async ngOnInit() {
     this.token = (await this.auth.getCurrentUser()?.getIdToken()) || "";
@@ -28,18 +28,12 @@ export class SentComponent implements OnInit, AfterViewInit {
   }
 
   reloadData() {
-    const headers = {
-      Authorization: `Bearer ${this.token}`,
-    };
-
     this.loading = true;
 
-    this.http
-      .get("https://etherio-pay.herokuapp.com/transaction/transfered", {
-        headers,
-      })
+    this.account
+      .getTransfered(this.token)
       .toPromise()
-      .then((data: any) => {
+      .then((data) => {
         this.transactions = data || [];
         this.dataSource.data = this.transactions;
         this.loading = false;

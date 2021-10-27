@@ -1,5 +1,5 @@
 <div
-  class="rounded-lg py-4 px-2 bg-gradient-to-tl from-pink-600 to-purple-700 text-white shadow"
+  class="rounded-lg py-8 px-2 bg-gradient-to-tl from-pink-600 to-purple-700 text-white shadow"
 >
   <div class="font-medium text-lg mx-2 tracking-wider">
     {{ identifier }}
@@ -22,7 +22,9 @@
       </svg>
     </span>
 
-    <span>{{ isVisibleBalance ? balance : '*******' }}</span>
+    <span class="min-w-[86px]">
+      {{ isVisibleBalance ? balance : '**********' }}
+    </span>
 
     <button mat-icon-button (click)="isVisibleBalance=!isVisibleBalance">
       <svg

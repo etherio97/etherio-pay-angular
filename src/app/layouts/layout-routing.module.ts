@@ -26,6 +26,7 @@ import { RecievedComponent } from "../history/recieved/recieved.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { SentComponent } from "../history/sent/sent.component";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { AccountService } from "../shared/account.service";
 
 const routes: Routes = [
   {
@@ -86,5 +87,6 @@ const routes: Routes = [
     MatProgressBarModule,
   ],
   exports: [RouterModule],
+  providers: [AccountService],
 })
 export class LayoutRoutingModule {}
