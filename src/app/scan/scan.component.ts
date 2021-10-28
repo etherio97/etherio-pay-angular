@@ -39,7 +39,7 @@ export class ScanComponent implements OnInit {
     this.qrResultString = resultString;
     try {
       let { recipient, recipientId, amount } = JSON.parse(this.qrResultString);
-      let url = new URL(`${location.protocol}//${location.host}/transfer`);
+      let url = new URL(`${location.protocol}//${location.host}/#/transfer`);
       url.searchParams.append("recipient", recipient || "");
       url.searchParams.append("recipientId", recipientId || "");
       url.searchParams.append("amount", amount || 0);
