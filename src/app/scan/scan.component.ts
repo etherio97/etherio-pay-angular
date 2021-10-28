@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { BarcodeFormat } from "@zxing/library";
 
 @Component({
@@ -25,7 +26,7 @@ export class ScanComponent implements OnInit {
 
   qrResultString = "";
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -36,6 +37,17 @@ export class ScanComponent implements OnInit {
 
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
+    try {
+      let { recipient, recipientId, amount } = JSON.parse(this.qrResultString);
+      let queryParams = new URLSearchParams({
+        recipient,
+        recipientId,
+        amount,
+      });
+      this.router.navigate(["/transfer"], { queryParams });
+    } catch (e) {
+      alert("[ERROR] Unexcepted QR Code");
+    }
   }
 
   onDeviceSelectChange(selected: string) {

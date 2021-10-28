@@ -1,14 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../shared/auth.service";
 import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: "app-transfer",
   templateUrl: "./transfer.component.html",
-  styleUrls: ["./transfer.component.scss"],
 })
 export class TransferComponent implements OnInit {
   recipient = "";
@@ -24,10 +23,17 @@ export class TransferComponent implements OnInit {
     private authService: AuthService,
     private http: HttpClient,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.route.queryParams.subscribe(({ recipient, recipientId, amount }) => {
+      this.recipient = recipient || "";
+      this.recipientId = recipientId || "";
+      this.amount = amount || 0;
+    });
+
     this.authService
       .getAuth()
       .currentUser?.getIdToken()
