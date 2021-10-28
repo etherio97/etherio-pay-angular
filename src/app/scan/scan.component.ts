@@ -39,12 +39,11 @@ export class ScanComponent implements OnInit {
     this.qrResultString = resultString;
     try {
       let { recipient, recipientId, amount } = JSON.parse(this.qrResultString);
-      let queryParams = new URLSearchParams({
-        recipient,
-        recipientId,
-        amount,
-      });
-      this.router.navigate(["/transfer"], { queryParams });
+      let url = new URL(`${location.protocol}//${location.host}/transfer`);
+      url.searchParams.append("recipient", recipient || "");
+      url.searchParams.append("recipientId", recipientId || "");
+      url.searchParams.append("amount", amount || 0);
+      window.location.href = url.toString();
     } catch (e) {
       alert("[ERROR] Unexcepted QR Code");
     }
