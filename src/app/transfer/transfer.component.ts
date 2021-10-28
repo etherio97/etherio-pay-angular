@@ -28,20 +28,20 @@ export class TransferComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(({ recipient, amount }) => {
-      if (recipient) {
-        this.recipient = recipient || "";
-        this.amount = amount || 0;
-        this.searchAccount();
-      }
-    });
-
     this.authService
       .getAuth()
       .currentUser?.getIdToken()
       .then((token) => {
         this.token = token;
+        if (this.recipient) {
+          this.searchAccount();
+        }
       });
+
+    this.route.queryParams.subscribe(({ recipient, amount }) => {
+      this.recipient = recipient || "";
+      this.amount = amount || 0;
+    });
   }
 
   searchAccount() {
