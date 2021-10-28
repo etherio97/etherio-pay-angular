@@ -174,7 +174,7 @@
     "symbol-observable" "4.0.0"
     "uuid" "8.3.2"
 
-"@angular/common@ ^12.0.0-rc.0 || ^12.0.0", "@angular/common@^12.0.0 || ^13.0.0-0", "@angular/common@~12.2.0", "@angular/common@12.2.11":
+"@angular/common@ ^12.0.0-rc.0 || ^12.0.0", "@angular/common@^11.2.11 || ^12.0.4", "@angular/common@^12.0.0 || ^13.0.0-0", "@angular/common@~12.2.0", "@angular/common@12.2.11":
   "integrity" "sha512-/3QS5YaHfm2taJYUVes076ZMpL2GRYVW3HDbHXiRNjoC9EMqQ7ahRD9RPFC8XUk709JuqzonE3bB+N5Ld3mzIA=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-12.2.11.tgz"
   "version" "12.2.11"
@@ -208,14 +208,14 @@
   dependencies:
     "tslib" "^2.2.0"
 
-"@angular/core@^12.0.0 || ^13.0.0-0", "@angular/core@^12.0.0-rc.0 || ^12.0.0", "@angular/core@~12.2.0", "@angular/core@12.2.11":
+"@angular/core@^11.2.11 || ^12.0.4", "@angular/core@^12.0.0 || ^13.0.0-0", "@angular/core@^12.0.0-rc.0 || ^12.0.0", "@angular/core@~12.2.0", "@angular/core@12.2.11":
   "integrity" "sha512-wzCFtVFdQlXJlzWpWNz3w8cDzhYzuO1qDqey15Wd4zPR8c8pDx3/XCZXSziskaUzA+fVzgHHSwQnOi9XSFFjzA=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-12.2.11.tgz"
   "version" "12.2.11"
   dependencies:
     "tslib" "^2.2.0"
 
-"@angular/forms@^12.0.0 || ^13.0.0-0", "@angular/forms@~12.2.0":
+"@angular/forms@^11.2.11 || ^12.0.4", "@angular/forms@^12.0.0 || ^13.0.0-0", "@angular/forms@~12.2.0":
   "integrity" "sha512-mylti7rtz2FcM3hwPSj2JnX8y8BrXmzrjEWjcLlXmwoMzv/M3vY5HlgKzOmPN03bVgxC7b7EFfGMXfJ3YoPWpg=="
   "resolved" "https://registry.npmjs.org/@angular/forms/-/forms-12.2.11.tgz"
   "version" "12.2.11"
@@ -2037,6 +2037,34 @@
   "integrity" "sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ=="
   "resolved" "https://registry.npmjs.org/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz"
   "version" "1.1.0"
+
+"@zxing/browser@^0.0.5":
+  "integrity" "sha512-nIdOV3Yx6NKNuHYRvcSng9qnYoe0Apu8T0E9NNk7tinCGpF/vjnBXMaiugAy00NDI+UyKr3QTWYQrpweDuMMdw=="
+  "resolved" "https://registry.npmjs.org/@zxing/browser/-/browser-0.0.5.tgz"
+  "version" "0.0.5"
+  optionalDependencies:
+    "@zxing/text-encoding" "^0.9.0"
+
+"@zxing/library@^0.18.3":
+  "integrity" "sha512-bulZ9JHoLFd9W36pi+7e7DnEYNJhljYjZ1UTsKPOoLMU3qtC+REHITeCRNx40zTRJZx18W5TBRXt5pq2Uopjsw=="
+  "resolved" "https://registry.npmjs.org/@zxing/library/-/library-0.18.6.tgz"
+  "version" "0.18.6"
+  dependencies:
+    "ts-custom-error" "^3.0.0"
+  optionalDependencies:
+    "@zxing/text-encoding" "~0.9.0"
+
+"@zxing/ngx-scanner@^3.2.0":
+  "integrity" "sha512-ngOLM6zE75rLAt+fyAJlvbuZB7/NG+1pPfagM2KneC9kpVwRMO9NzqEN5fKqGX6pX1zjnT+hVaCbVDkxVQ4ihg=="
+  "resolved" "https://registry.npmjs.org/@zxing/ngx-scanner/-/ngx-scanner-3.2.0.tgz"
+  "version" "3.2.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@zxing/text-encoding@^0.9.0", "@zxing/text-encoding@~0.9.0":
+  "integrity" "sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA=="
+  "resolved" "https://registry.npmjs.org/@zxing/text-encoding/-/text-encoding-0.9.0.tgz"
+  "version" "0.9.0"
 
 "abab@^2.0.5":
   "integrity" "sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q=="
@@ -7647,7 +7675,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.0.1", "rxjs@^6.5.3 || ^7.0.0", "rxjs@~6.6.0", "rxjs@6.6.7":
+"rxjs@^6.0.1", "rxjs@^6.5.3 || ^7.0.0", "rxjs@^6.6.3", "rxjs@~6.6.0", "rxjs@6.6.7":
   "integrity" "sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz"
   "version" "6.6.7"
@@ -8586,6 +8614,11 @@
   "integrity" "sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A=="
   "resolved" "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.2.tgz"
   "version" "1.2.2"
+
+"ts-custom-error@^3.0.0":
+  "integrity" "sha512-cBvC2QjtvJ9JfWLvstVnI45Y46Y5dMxIaG1TDMGAD/R87hpvqFL+7LhvUDhnRCfOnx/xitollFWWvUKKKhbN0A=="
+  "resolved" "https://registry.npmjs.org/ts-custom-error/-/ts-custom-error-3.2.0.tgz"
+  "version" "3.2.0"
 
 "tslib@^1.10.0":
   "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="

@@ -27,6 +27,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { SentComponent } from "../history/sent/sent.component";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { AccountService } from "../shared/account.service";
+import { ScanComponent } from "../scan/scan.component";
+import { ZXingScannerModule } from "@zxing/ngx-scanner";
 
 const routes: Routes = [
   {
@@ -50,6 +52,10 @@ const routes: Routes = [
         path: "sent",
         component: SentComponent,
       },
+      {
+        path: "scan",
+        component: ScanComponent,
+      },
     ],
   },
 ];
@@ -67,6 +73,7 @@ const routes: Routes = [
     ConfirmDialogComponent,
     RecievedComponent,
     SentComponent,
+    ScanComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +92,7 @@ const routes: Routes = [
     MatTableModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    ZXingScannerModule,
   ],
   exports: [RouterModule],
   providers: [AccountService],

@@ -1,0 +1,17 @@
+<h2>Scan QR</h2>
+
+<div *ngIf="allowed;else confirmation">
+  <zxing-scanner></zxing-scanner>
+</div>
+
+<ng-template #confirmation>
+  <div
+    class="w-full text-center mt-10 mx-4 p-5 bg-gray-400/40 rounded-lg shadow-lg"
+  >
+    <h2>You need to allow camera access!</h2>
+
+    <div class="mt-4">
+      <button mat-button class="w-full" (click)="allowed=true">OK</button>
+    </div>
+  </div>
+</ng-template>
