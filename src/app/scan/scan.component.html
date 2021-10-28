@@ -1,7 +1,15 @@
 <h2>Scan QR</h2>
 
 <div *ngIf="allowed;else confirmation">
-  <zxing-scanner></zxing-scanner>
+  <zxing-scanner
+    [device]="deviceCurrent"
+    (deviceChange)="onDeviceChange($event)"
+    (scanSuccess)="onCodeResult($event)"
+    [formats]="formatsEnabled"
+    [tryHarder]="tryHarder"
+    (permissionResponse)="onHasPermission($event)"
+    (camerasFound)="onCamerasFound($event)"
+  ></zxing-scanner>
 </div>
 
 <ng-template #confirmation>
