@@ -29,6 +29,8 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { AccountService } from "../shared/account.service";
 import { ScanComponent } from "../scan/scan.component";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
+import { GiftCardsComponent } from "../gift-cards/gift-cards.component";
+import { GiftCardComponent } from '../gift-cards/gift-card/gift-card.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,10 @@ const routes: Routes = [
         path: "scan",
         component: ScanComponent,
       },
+      {
+        path: "gifts",
+        component: GiftCardsComponent,
+      },
     ],
   },
 ];
@@ -74,6 +80,8 @@ const routes: Routes = [
     RecievedComponent,
     SentComponent,
     ScanComponent,
+    GiftCardsComponent,
+    GiftCardComponent,
   ],
   imports: [
     CommonModule,

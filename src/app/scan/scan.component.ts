@@ -38,7 +38,7 @@ export class ScanComponent implements OnInit {
   onCodeResult(resultString: string) {
     this.qrResultString = resultString;
     try {
-      let url = new URL(this.qrResultString);
+      new URL(this.qrResultString);
       window.location.href = this.qrResultString;
     } catch (e) {
       alert("[ERROR] Unexcepted QR Code");

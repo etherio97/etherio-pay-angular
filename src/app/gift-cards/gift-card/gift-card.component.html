@@ -1,0 +1,9 @@
+<div class="rounded-md overflow-hidden bg-gray-700 shadow-md cursor-pointer">
+  <div class="px-2 py-2 flex justify-start text-white">
+    <h2 class="text-sm font-medium">{{title}}</h2>
+  </div>
+  <img class="h-40 w-full object-cover" [src]="image" [alt]="title" />
+  <div class="px-2 py-2 flex justify-end text-white">
+    <h4 class="text-sm font-medium">{{price.toLocaleString()}} Kyats</h4>
+  </div>
+</div>

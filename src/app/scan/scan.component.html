@@ -1,31 +1,37 @@
-<h2>Scan QR</h2>
+<div class="py-4">
+  <app-back-button></app-back-button>
 
-<div *ngIf="allowed;else confirmation">
-  <div *ngIf="!hasDevices">
-    No camera found on this device.
-  </div>
+  <h2>Scan QR</h2>
 
-  <div *ngIf="!hasPermission">
-    Cannot access camera!
-  </div>
-
-  <zxing-scanner
-    [device]="deviceCurrent"
-    (deviceChange)="onDeviceChange($event)"
-    (scanSuccess)="onCodeResult($event)"
-    [formats]="formatsEnabled"
-    [tryHarder]="tryHarder"
-    (permissionResponse)="onHasPermission($event)"
-    (camerasFound)="onCamerasFound($event)"
-  ></zxing-scanner>
-</div>
-
-<ng-template #confirmation>
-  <div class="w-full text-center mt-10 p-5 bg-gray-400/40 rounded-lg shadow-lg">
-    <h2>You need to allow camera access!</h2>
-
-    <div class="mt-4">
-      <button mat-button class="w-full" (click)="allowed=true">OK</button>
+  <div *ngIf="allowed;else confirmation">
+    <div *ngIf="!hasDevices">
+      No camera found on this device.
     </div>
+
+    <div *ngIf="!hasPermission">
+      Cannot access camera!
+    </div>
+
+    <zxing-scanner
+      [device]="deviceCurrent"
+      (deviceChange)="onDeviceChange($event)"
+      (scanSuccess)="onCodeResult($event)"
+      [formats]="formatsEnabled"
+      [tryHarder]="tryHarder"
+      (permissionResponse)="onHasPermission($event)"
+      (camerasFound)="onCamerasFound($event)"
+    ></zxing-scanner>
   </div>
-</ng-template>
+
+  <ng-template #confirmation>
+    <div
+      class="w-full text-center mt-10 p-5 bg-gray-400/40 rounded-lg shadow-lg"
+    >
+      <h2>You need to allow camera access!</h2>
+
+      <div class="mt-4">
+        <button mat-button class="w-full" (click)="allowed=true">OK</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
