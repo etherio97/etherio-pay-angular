@@ -19,8 +19,8 @@ export interface GiftCardResponse {
   providedIn: "root",
 })
 export class GiftCardService {
-  private GET_PACKAGE = "http://localhost:3000/gift-cards";
-  private GET_ALL_PACKAGES = "http://localhost:3000/gift-cards/all";
+  private GET_PACKAGE = "https://etherio-pay.herokuapp.com/gift-cards";
+  private GET_ALL_PACKAGES = "https://etherio-pay.herokuapp.com/gift-cards/all";
 
   constructor(private http: HttpClient) {}
 
