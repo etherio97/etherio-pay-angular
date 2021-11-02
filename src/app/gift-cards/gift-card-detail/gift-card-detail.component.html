@@ -1,0 +1,14 @@
+<div class="py-2">
+  <app-back-button></app-back-button>
+
+  <h2 class="text-lg font-bold text-indigo-600 mb-2">Gift Cards</h2>
+
+  <div class="grid grid-cols-1 gap-5">
+    <app-gift-card
+      *ngFor="let giftCard of giftCards"
+      [title]="giftCard.title"
+      [price]="giftCard.price"
+      [image]="giftCard.image"
+    ></app-gift-card>
+  </div>
+</div>

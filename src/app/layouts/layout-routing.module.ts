@@ -30,7 +30,9 @@ import { AccountService } from "../shared/account.service";
 import { ScanComponent } from "../scan/scan.component";
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { GiftCardsComponent } from "../gift-cards/gift-cards.component";
-import { GiftCardComponent } from '../gift-cards/gift-card/gift-card.component';
+import { GiftCardComponent } from "../gift-cards/gift-card/gift-card.component";
+import { GiftCardService } from "../shared/gift-card.service";
+import { GiftCardDetailComponent } from "../gift-cards/gift-card-detail/gift-card-detail.component";
 
 const routes: Routes = [
   {
@@ -62,6 +64,10 @@ const routes: Routes = [
         path: "gifts",
         component: GiftCardsComponent,
       },
+      {
+        path: "gifts/:id",
+        component: GiftCardDetailComponent,
+      },
     ],
   },
 ];
@@ -82,6 +88,7 @@ const routes: Routes = [
     ScanComponent,
     GiftCardsComponent,
     GiftCardComponent,
+    GiftCardDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -103,6 +110,6 @@ const routes: Routes = [
     ZXingScannerModule,
   ],
   exports: [RouterModule],
-  providers: [AccountService],
+  providers: [AccountService, GiftCardService],
 })
 export class LayoutRoutingModule {}

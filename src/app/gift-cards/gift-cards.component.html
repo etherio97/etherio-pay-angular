@@ -3,36 +3,18 @@
 
   <h2 class="text-lg font-bold text-indigo-600 mb-2">Gift Cards</h2>
 
-  <div class="grid grid-cols-1 gap-3">
-    <app-gift-card
-      title="Steam Gift Card - USD5"
-      image="assets/img/gift-cards/steam.jpg"
-      [price]="10000"
-    ></app-gift-card>
-    <app-gift-card
-      title="Steam Gift Card - USD10"
-      image="assets/img/gift-cards/steam.jpg"
-      [price]="20000"
-    ></app-gift-card>
-    <app-gift-card
-      title="Steam Gift Card - USD20"
-      image="assets/img/gift-cards/steam.jpg"
-      [price]="40000"
-    ></app-gift-card>
-    <app-gift-card
-      title="Steam Gift Card - USD30"
-      image="assets/img/gift-cards/steam.jpg"
-      [price]="60000"
-    ></app-gift-card>
-    <app-gift-card
-      image="assets/img/gift-cards/steam.jpg"
-      title="Steam Gift Card - USD50"
-      [price]="100000"
-    ></app-gift-card>
-    <app-gift-card
-      image="assets/img/gift-cards/steam.jpg"
-      title="Steam Gift Card - USD100"
-      [price]="200000"
-    ></app-gift-card>
+  <div class="grid grid-cols-4 gap-5">
+    <a
+      *ngFor="let giftCard of giftCards"
+      class="overflow-hidden cursor-pointer"
+      [routerLink]="['/gifts',giftCard.id]"
+    >
+      <img
+        [src]="giftCard.image"
+        [alt]="giftCard.title"
+        class="object-cover h-20 w-20 rounded-xl shadow-xl"
+      />
+      <h2 class="text-xs text-center pt-2">{{giftCard.title}}</h2>
+    </a>
   </div>
 </div>
