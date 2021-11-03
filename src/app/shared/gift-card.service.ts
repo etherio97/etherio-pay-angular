@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { SERVICE_URL } from "../app.config";
 
 export interface GiftCardPackageResponse {
   id: string;
@@ -19,26 +20,27 @@ export interface GiftCardResponse {
   providedIn: "root",
 })
 export class GiftCardService {
-  private GET_PACKAGE = "https://etherio-pay.herokuapp.com/gift-cards";
-  private GET_ALL_PACKAGES = "https://etherio-pay.herokuapp.com/gift-cards/all";
-
   constructor(private http: HttpClient) {}
 
   getAllPackages(token: string) {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    return this.http.get<GiftCardPackageResponse[]>(this.GET_ALL_PACKAGES, {
-      headers,
-    });
+    return this.http.get<GiftCardPackageResponse[]>(
+      SERVICE_URL.GET_ALL_PACKAGES,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   }
 
   getAll(id: string, token: string) {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    return this.http.get<GiftCardResponse[]>(`${this.GET_PACKAGE}/${id}`, {
-      headers,
-    });
+    return this.http.get<GiftCardResponse[]>(
+      `${SERVICE_URL.GET_PACKAGE}/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   }
 }

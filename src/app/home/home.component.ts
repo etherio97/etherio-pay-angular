@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { getIdToken, signOut } from "@firebase/auth";
 import { AccountService } from "../shared/account.service";
 import { AuthService } from "../shared/auth.service";
+import { StartUsingComponent } from "./start-using/start-using.component";
 
 @Component({
   selector: "app-home",
@@ -23,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private account: AccountService
+    private account: AccountService,
+    private dialog: MatDialog
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -36,8 +39,24 @@ export class HomeComponent implements OnInit {
         user.email ||
         user.uid;
 
-      const { balance } = await this.account.getAccount(this.token).toPromise();
+      await this.reloadData();
 
+      if (this.balance === "") {
+        this.balance = "0";
+        const modal = this.dialog.open(StartUsingComponent, {
+          disableClose: true,
+        });
+        modal.componentInstance.token = this.token;
+        modal.componentInstance.close = () => modal.close();
+        modal.componentInstance.reload = () => this.reloadData();
+        modal.componentInstance.signOut = () => this.signOut();
+      }
+    }
+  }
+
+  async reloadData() {
+    const { balance } = await this.account.getAccount(this.token).toPromise();
+    if (balance !== null) {
       this.balance = balance.toLocaleString();
     }
   }

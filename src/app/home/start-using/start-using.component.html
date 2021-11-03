@@ -1,0 +1,21 @@
+<h2 class="pb-4">This account doesn't have <b>Etherio Pay</b>.</h2>
+
+<button
+  mat-flat-button
+  class="bg-gray-700 text-white w-full"
+  (click)="startUsing()"
+  [disabled]="loading"
+>
+  Start using Etherio Pay
+</button>
+
+<div class="py-2"></div>
+
+<button
+  mat-flat-button
+  class="bg-gray-500 text-white w-full"
+  (click)="changeAccount()"
+  [disabled]="loading"
+>
+  Change Account
+</button>
