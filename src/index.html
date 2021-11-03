@@ -8,28 +8,19 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telephone=no" />
-    <link
-      rel="apple-touch-icon"
-      sizes="192x192"
-      href="assets/images/logo-192x192.jpg"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="512x512"
-      href="assets/images/logo-512x512.jpg"
-    />
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/logo-192x192.jpg" />
+    <link rel="apple-touch-icon" sizes="512x512" href="assets/images/logo-512x512.jpg" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body class="dark">
+    <div id="preload" class="fixed inset-0 bg-gray-800 z-10 flex justify-center items-center transition-all duration-500">
+      <div class="flex flex-col justify-center items-center">
+        <img class="w-32 h-32 object-contain animate-pulse" src="assets/img/logo/logo.svg" />
+        <p class="text-sm text-gray-200/20 animate-ping">Loading...</p>
+      </div>
+    </div>
     <app-root></app-root>
   </body>
 </html>

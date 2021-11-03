@@ -34,6 +34,7 @@ import { GiftCardComponent } from "../gift-cards/gift-card/gift-card.component";
 import { GiftCardService } from "../shared/gift-card.service";
 import { GiftCardDetailComponent } from "../gift-cards/gift-card-detail/gift-card-detail.component";
 import { StartUsingComponent } from "../home/start-using/start-using.component";
+import { LoadingComponent } from '../loading/loading.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,7 @@ const routes: Routes = [
     GiftCardComponent,
     GiftCardDetailComponent,
     StartUsingComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
