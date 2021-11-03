@@ -1,7 +1,6 @@
 import { FirebaseOptions } from '@firebase/app';
 
-// const BASE_API_URL = "https://etherio-pay.herokuapp.com";
-const BASE_API_URL = 'http://localhost:3000';
+const BASE_API_URL = 'https://etherio-pay.herokuapp.com';
 
 export const firebaseConfig: FirebaseOptions = {
   apiKey: 'AIzaSyBLnixFP-rLWHOOEvxC2pjF1ocCrH2qt1A',
