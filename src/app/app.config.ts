@@ -1,6 +1,11 @@
 import { FirebaseOptions } from '@firebase/app';
 
-const BASE_API_URL = 'https://etherio-pay.herokuapp.com';
+let HOSTNAME = window.location.hostname;
+let BASE_URL = '/api';
+
+if (! HOSTNAME.match(/(?:vercel\.app|ddns\.net)/)) {
+  BASE_URL = 'https://etherio-pay.herokuapp.com';
+}
 
 export const firebaseConfig: FirebaseOptions = {
   apiKey: 'AIzaSyBLnixFP-rLWHOOEvxC2pjF1ocCrH2qt1A',
@@ -12,9 +17,9 @@ export const firebaseConfig: FirebaseOptions = {
 };
 
 export const SERVICE_URL = {
-  GET_ACCOUNT: BASE_API_URL + '/account',
-  TRAN_TRANSFERED: BASE_API_URL + '/transaction/transfered',
-  TRAN_RECIEVED: BASE_API_URL + '/transaction/recieved',
-  GET_PACKAGE: BASE_API_URL + '/gift-cards',
-  GET_ALL_PACKAGES: BASE_API_URL + '/gift-cards/all',
+  GET_ACCOUNT: `${BASE_URL}/account`,
+  TRAN_TRANSFERED: `${BASE_URL}/transaction/transfered`,
+  TRAN_RECIEVED: `${BASE_URL}/transaction/recieved`,
+  GET_PACKAGE: `${BASE_URL}/gift-cards`,
+  GET_ALL_PACKAGES: `${BASE_URL}/gift-cards/all`,
 };
