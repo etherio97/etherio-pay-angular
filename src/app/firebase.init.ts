@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, User } from 'firebase/auth';
+import { getAnalytics } from 'firebase/analytics';
 import { firebaseConfig } from './app.config';
 import { AuthService } from './shared/auth.service';
 
@@ -14,6 +15,8 @@ export function firebaseInitializer() {
           resolve();
         })
       );
+
+    getAnalytics();
 
     await onAuthChanged();
   };
