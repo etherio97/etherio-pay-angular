@@ -8,8 +8,7 @@ if (!HOSTNAME.match(/(vercel\.app|ddns\.net)/)) {
   BASE_URL = 'https://etherio-pay.herokuapp.com';
   
   // redirect to proxy server if in local
-  HOSTNAME.match(/^(localhost|\d)/) || 
-    (window.location.href = 'https://etherio-pay.vercel.app');
+  
 }
 
 export const firebaseConfig: FirebaseOptions = {
