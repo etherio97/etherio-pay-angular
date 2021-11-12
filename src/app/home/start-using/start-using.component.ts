@@ -15,7 +15,7 @@ export class StartUsingComponent {
 
   constructor(private account: AccountService) {}
 
-  startUsing() {
+  startUsing(): void  {
     if (this.loading) return;
     this.loading = true;
     this.account
@@ -29,7 +29,7 @@ export class StartUsingComponent {
       .catch((e) => alert(e.message));
   }
 
-  changeAccount() {
+  changeAccount(): void  {
     this.signOut();
     this.close();
   }

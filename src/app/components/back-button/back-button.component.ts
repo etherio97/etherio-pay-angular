@@ -8,7 +8,7 @@ import { Component } from "@angular/core";
 export class BackButtonComponent {
   constructor(private location: Location) {}
 
-  back() {
+  back(): void  {
     this.location.back();
   }
 }
