@@ -23,11 +23,11 @@ export class RecievedComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  ngAfterViewInit() {
+  ngAfterViewInit(): void  {
     this.dataSource.paginator = this.paginator;
   }
 
-  reloadData() {
+  reloadData(): void  {
     this.loading = true;
 
     this.account

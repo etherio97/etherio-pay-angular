@@ -35,7 +35,7 @@ export class ScanComponent implements OnInit {
     this.hasDevices = Boolean(devices && devices.length);
   }
 
-  onCodeResult(resultString: string) {
+  onCodeResult(resultString: string): void  {
     this.qrResultString = resultString;
     try {
       new URL(this.qrResultString);
@@ -45,7 +45,7 @@ export class ScanComponent implements OnInit {
     }
   }
 
-  onDeviceSelectChange(selected: string) {
+  onDeviceSelectChange(selected: string): void  {
     const selectedStr = selected || "";
     if (this.deviceSelected === selectedStr) {
       return;
@@ -55,7 +55,7 @@ export class ScanComponent implements OnInit {
     this.deviceCurrent = device || undefined;
   }
 
-  onDeviceChange(device: MediaDeviceInfo) {
+  onDeviceChange(device: MediaDeviceInfo): void  {
     const selectedStr = device?.deviceId || "";
     if (this.deviceSelected === selectedStr) {
       return;
@@ -64,7 +64,7 @@ export class ScanComponent implements OnInit {
     this.deviceCurrent = device || undefined;
   }
 
-  onHasPermission(has: boolean) {
+  onHasPermission(has: boolean): void  {
     this.hasPermission = has;
   }
 }

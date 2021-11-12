@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth = this.authService.getAuth();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void  {
     this.recaptcha = new RecaptchaVerifier(
       "recaptcha",
       { size: "invisible" },
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changePhone() {
+  changePhone(): void  {
     this.isSentingOTP = false;
     this.otpCode?.setValue("");
     requestAnimationFrame(() => {

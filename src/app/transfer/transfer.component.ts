@@ -27,7 +27,7 @@ export class TransferComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void  {
     this.authService
       .getAuth()
       .currentUser?.getIdToken()
@@ -44,7 +44,7 @@ export class TransferComponent implements OnInit {
     });
   }
 
-  searchAccount() {
+  searchAccount(): void  {
     const identifier = "+959" + this.recipient;
     const headers = {
       authorization: `Bearer ${this.token}`,
@@ -70,16 +70,16 @@ export class TransferComponent implements OnInit {
       });
   }
 
-  selectAmount(amount: number) {
+  selectAmount(amount: number): void  {
     this.amount = amount;
   }
 
-  sendTransfer() {
+  sendTransfer(): void  {
     const modal = this.dialog.open(ConfirmDialogComponent);
     modal.componentInstance.confirm = () => this.confirmTransfer();
   }
 
-  confirmTransfer() {
+  confirmTransfer(): void  {
     const recipientId = this.recipientId;
     const headers = {
       authorization: `Bearer ${this.token}`,
