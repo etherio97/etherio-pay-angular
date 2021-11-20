@@ -133,10 +133,10 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/animations@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/animations/-/animations-12.2.11.tgz"
-  integrity sha512-J6tXNCEgI3SYPfFy9F0QDQNx0g4F8gfJA05iaf6scpZvqziQ80g0vwrBQdV6JqkFvSPQqLJDxyIxDQJSrCt8YA==
+"@angular/animations@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.2.13.tgz#909b79c56a85bb31c0605ed419850340b5580be9"
+  integrity sha512-qpdmvu+nxsKnimJ3Hc1joNuzK7xXYyE+VtNMk4K77Ao/9+5C/juGMce85DhqZCcu1xraZ3YYIrzYmL/GgdUK4g==
   dependencies:
     tslib "^2.2.0"
 
@@ -174,10 +174,10 @@
     symbol-observable "4.0.0"
     uuid "8.3.2"
 
-"@angular/common@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/common/-/common-12.2.11.tgz"
-  integrity sha512-/3QS5YaHfm2taJYUVes076ZMpL2GRYVW3HDbHXiRNjoC9EMqQ7ahRD9RPFC8XUk709JuqzonE3bB+N5Ld3mzIA==
+"@angular/common@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-12.2.13.tgz#fe52ffae8668c1dec41b26cdc3a749101399e1fe"
+  integrity sha512-I1t/jl9ojCwTJKT7PKHnk23D+vMHTHS/9qZ2nndCjzGusMK8029nn8l3tHAkwefvxZWSaLAk1MgsVcP+rHQNsQ==
   dependencies:
     tslib "^2.2.0"
 
@@ -201,24 +201,24 @@
     tslib "^2.2.0"
     yargs "^17.0.0"
 
-"@angular/compiler@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-12.2.11.tgz"
-  integrity sha512-78b5Uf+79gOKEyF/ixFAGJANNHnhueofSxgToBmJkTTpqTX6Xzdfzw8W+ehpJADp52eBjmZ+rv7b9sgBsiJ1tg==
+"@angular/compiler@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.13.tgz#7eef6fdb81b9de6fd0e2cdda2ad8a084c1d9535b"
+  integrity sha512-L0saTTJJtxldjhaGIL6b1BCfodPOEz4Wrev3pEUK5UcODooj5HLiE/aO6jiNb8M4XTbdqByKyqvZyWzGHeexVQ==
   dependencies:
     tslib "^2.2.0"
 
-"@angular/core@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-12.2.11.tgz"
-  integrity sha512-wzCFtVFdQlXJlzWpWNz3w8cDzhYzuO1qDqey15Wd4zPR8c8pDx3/XCZXSziskaUzA+fVzgHHSwQnOi9XSFFjzA==
+"@angular/core@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-12.2.13.tgz#fc40acbdcee5c5878bd249ddc0d643be724076c3"
+  integrity sha512-tZ5nAnmOi418JDaJIFiiP9z2JrluMJZvUvXO4QDUs52BXaL2yuP7MJ2LczWOVJXrBLZXeZGfjDjZmaFPA24grg==
   dependencies:
     tslib "^2.2.0"
 
-"@angular/forms@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/forms/-/forms-12.2.11.tgz"
-  integrity sha512-mylti7rtz2FcM3hwPSj2JnX8y8BrXmzrjEWjcLlXmwoMzv/M3vY5HlgKzOmPN03bVgxC7b7EFfGMXfJ3YoPWpg==
+"@angular/forms@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.2.13.tgz#4de90e88991c274b5d5e3ab0300267e161ba78f2"
+  integrity sha512-wa7I5R8sck2q+VWNL262GJTVxtpEHMys8Bt6oE+lyHB5zlZAgOXwAb8GE4XVwuc+BZU1Gvrocn21P/8KvDY1uw==
   dependencies:
     tslib "^2.2.0"
 
@@ -229,24 +229,24 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/platform-browser-dynamic@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.2.11.tgz"
-  integrity sha512-TF80norTsBbJiUsqo6IUNALV2W1YkEa5QAB6RkTrb1K/V6oGcWcGfqSyCMbjRHPEZTwiAzz4cYEmip5kFtE+oQ==
+"@angular/platform-browser-dynamic@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.2.13.tgz#9ee6309f511da419d5d80a1a8279adc806e92f04"
+  integrity sha512-a7y7R3vOXhMAk9uQWK5/23DefahuF0UYJSFM/wKeVo5zR+qOCVCTfafkJMcWbuZWTrSDbVafJ1xbcWnu3+TkCg==
   dependencies:
     tslib "^2.2.0"
 
-"@angular/platform-browser@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-12.2.11.tgz"
-  integrity sha512-uJEnVOK3M1SrCWJoW2jFx5F8pUCbSISai7dbTBVc+/Gx6e9ZuNzBVOooLvSzV96DurhTV7xGSXR5Ry75UNZ48A==
+"@angular/platform-browser@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-12.2.13.tgz#769fb148b2128663d6b405d2a41023f2cdaa1c95"
+  integrity sha512-Ua8m2GtG2msqz/Mr/MK7s8RXud554x8cup2THVAwetyTaY5th/1LOZX0hhDIhfsxBCLHnC53LRhMbSsI0cikOg==
   dependencies:
     tslib "^2.2.0"
 
-"@angular/router@~12.2.0":
-  version "12.2.11"
-  resolved "https://registry.npmjs.org/@angular/router/-/router-12.2.11.tgz"
-  integrity sha512-iqQujHKLDpE+xJwXqRY1U83xfDnmb7LIQ0UL6ORSw6mqDTxIeMXfVKRqux1dIlWX+ysU0uTHuug49R8T9q0fhg==
+"@angular/router@~12.2.12":
+  version "12.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.2.13.tgz#e5b939a9675f9d4834fee3e75eb8d040ef63b3b5"
+  integrity sha512-HZL/Pzp6I7fQiMLrzfEzhnqhgNcGcFjBgMMOoLp5IA1IV26rp1NU6zYJzPrXtopBx7XLl8BECehAwFqrJsu/PQ==
   dependencies:
     tslib "^2.2.0"
 
