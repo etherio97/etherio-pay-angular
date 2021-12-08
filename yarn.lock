@@ -2018,12 +2018,12 @@
   optionalDependencies:
     "@zxing/text-encoding" "~0.9.0"
 
-"@zxing/ngx-scanner@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/@zxing/ngx-scanner/-/ngx-scanner-3.2.0.tgz"
-  integrity sha512-ngOLM6zE75rLAt+fyAJlvbuZB7/NG+1pPfagM2KneC9kpVwRMO9NzqEN5fKqGX6pX1zjnT+hVaCbVDkxVQ4ihg==
+"@zxing/ngx-scanner@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@zxing/ngx-scanner/-/ngx-scanner-3.3.0.tgz#3dfd718a49e5b5c51275af516b40364ba2178854"
+  integrity sha512-FJBU9i3wlCfnAjzy8ZpbCDmC46CYKnnh+sMH6WRIantqPq0MxqEXWEfz0OIFKLoHKRYo5qskNdNa6uP0hpJAcw==
   dependencies:
-    tslib "^2.1.0"
+    tslib "^2.2.0"
 
 "@zxing/text-encoding@^0.9.0", "@zxing/text-encoding@~0.9.0":
   version "0.9.0"
