@@ -3,13 +3,12 @@ import { FirebaseOptions } from '@firebase/app';
 let HOSTNAME = window.location.hostname;
 let BASE_URL = '/api';
 
-if (!HOSTNAME.match(/(vercel\.app|ddns\.net)/)) {
-  // status site, i.e. which not a proxy server
-  BASE_URL = 'https://etherio-pay.herokuapp.com';
-  
-  // redirect to proxy server if in local
-  HOSTNAME.match(/^(localhost|\d)/) || 
-    (window.location.href = 'https://etherio-pay.vercel.app');
+if (!HOSTNAME.includes(".vercel.app")) {
+  BASE_URL = 'https://etherio-pay.herokuapp.
+
+  if (!HOSTNAME.match(/^(localhost|\d)/)) {
+    window.location.href = 'https://etherio-pay.vercel.app';
+  }
 }
 
 export const firebaseConfig: FirebaseOptions = {
