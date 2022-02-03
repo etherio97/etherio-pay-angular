@@ -1,4 +1,4 @@
-# Etherio Pay - Angular
+# Etherio Pay - Angular 13
 
 [![Deploy](https://github.com/etherio97/etherio-pay-angular/actions/workflows/deploy.yml/badge.svg)](https://github.com/etherio97/etherio-pay-angular/actions/workflows/deploy.yml)
 
