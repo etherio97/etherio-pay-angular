@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { BarcodeFormat } from "@zxing/library";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
-  selector: "app-scan",
-  templateUrl: "./scan.component.html",
+  selector: 'app-scan',
+  templateUrl: './scan.component.html',
 })
 export class ScanComponent implements OnInit {
   allowed = false;
 
   availableDevices: MediaDeviceInfo[] = [];
   deviceCurrent?: MediaDeviceInfo;
-  deviceSelected = "";
+  deviceSelected = '';
 
   formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.CODE_128,
@@ -24,7 +24,7 @@ export class ScanComponent implements OnInit {
   hasPermission = false;
   tryHarder = false;
 
-  qrResultString = "";
+  qrResultString = '';
 
   constructor(private router: Router) {}
 
@@ -35,18 +35,18 @@ export class ScanComponent implements OnInit {
     this.hasDevices = Boolean(devices && devices.length);
   }
 
-  onCodeResult(resultString: string): void  {
+  onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
     try {
       new URL(this.qrResultString);
       window.location.href = this.qrResultString;
     } catch (e) {
-      alert("[ERROR] Unexcepted QR Code");
+      alert('[ERROR] Unexcepted QR Code');
     }
   }
 
-  onDeviceSelectChange(selected: string): void  {
-    const selectedStr = selected || "";
+  onDeviceSelectChange(selected: string): void {
+    const selectedStr = selected || '';
     if (this.deviceSelected === selectedStr) {
       return;
     }
@@ -55,8 +55,8 @@ export class ScanComponent implements OnInit {
     this.deviceCurrent = device || undefined;
   }
 
-  onDeviceChange(device: MediaDeviceInfo): void  {
-    const selectedStr = device?.deviceId || "";
+  onDeviceChange(device: MediaDeviceInfo): void {
+    const selectedStr = device?.deviceId || '';
     if (this.deviceSelected === selectedStr) {
       return;
     }
@@ -64,7 +64,7 @@ export class ScanComponent implements OnInit {
     this.deviceCurrent = device || undefined;
   }
 
-  onHasPermission(has: boolean): void  {
+  onHasPermission(has: boolean): void {
     this.hasPermission = has;
   }
 }

@@ -1,23 +1,23 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "../shared/auth.service";
-import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.component";
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../shared/auth.service';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: "app-transfer",
-  templateUrl: "./transfer.component.html",
+  selector: 'app-transfer',
+  templateUrl: './transfer.component.html',
 })
 export class TransferComponent implements OnInit {
-  recipient = "";
-  recipientId = "";
-  token = "";
+  recipient = '';
+  recipientId = '';
+  token = '';
   accounts: string[] = [];
   amount = 0;
   options = [10000, 50000, 100000, 500000];
   accountError = false;
-  transactionError = "";
+  transactionError = '';
 
   constructor(
     private authService: AuthService,
@@ -27,7 +27,7 @@ export class TransferComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void  {
+  ngOnInit(): void {
     this.authService
       .getAuth()
       .currentUser?.getIdToken()
@@ -39,23 +39,23 @@ export class TransferComponent implements OnInit {
       });
 
     this.route.queryParams.subscribe(({ recipient, amount }) => {
-      this.recipient = recipient || "";
+      this.recipient = recipient || '';
       this.amount = amount || 0;
     });
   }
 
-  searchAccount(): void  {
-    const identifier = "+959" + this.recipient;
+  searchAccount(): void {
+    const identifier = '+959' + this.recipient;
     const headers = {
       authorization: `Bearer ${this.token}`,
-      "content-type": "application/json",
+      'content-type': 'application/json',
     };
     this.accounts = [];
-    this.recipientId = "";
+    this.recipientId = '';
     this.accountError = false;
     this.http
       .post(
-        "https://etherio-pay.herokuapp.com/account/identify",
+        'https://etherio-pay.herokuapp.com/account/identify',
         { identifier },
         { headers }
       )
@@ -70,32 +70,32 @@ export class TransferComponent implements OnInit {
       });
   }
 
-  selectAmount(amount: number): void  {
+  selectAmount(amount: number): void {
     this.amount = amount;
   }
 
-  sendTransfer(): void  {
+  sendTransfer(): void {
     const modal = this.dialog.open(ConfirmDialogComponent);
     modal.componentInstance.confirm = () => this.confirmTransfer();
   }
 
-  confirmTransfer(): void  {
+  confirmTransfer(): void {
     const recipientId = this.recipientId;
     const headers = {
       authorization: `Bearer ${this.token}`,
-      "content-type": "application/json",
+      'content-type': 'application/json',
     };
     const amount = this.amount;
     this.accountError = false;
     this.http
       .post(
-        "https://etherio-pay.herokuapp.com/transfer",
+        'https://etherio-pay.herokuapp.com/transfer',
         { recipientId, amount },
         { headers }
       )
       .toPromise()
       .then(() => {
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
       })
       .catch((err) => {
         this.transactionError = err.error?.error;

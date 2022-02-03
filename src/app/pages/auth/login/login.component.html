@@ -1,0 +1,121 @@
+<form [formGroup]="formGroup" (ngSubmit)="login()">
+  <div class="min-h-screen flex items-center justify-center bg-gray-200">
+    <div class="w-full rounded shadow bg-gray-50 p-6 sm:w-96 space-y-2">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Phone Number</mat-label>
+        <input
+          id="phoneNumber"
+          name="phoneNumber"
+          matInput
+          type="tel"
+          inputmode="tel"
+          class="tracking-widest"
+          formControlName="phoneNumber"
+          [readonly]="loaded"
+          placeholder="09XXXXXXXX"
+        />
+      </mat-form-field>
+
+      <div class="space-y-5 -mt-2" *ngIf="!mode">
+        <button
+          class="block w-full bg-slate-800 text-white"
+          mat-flat-button
+          type="button"
+          (click)="setLoginMode('password')"
+          [disabled]="!formGroup.valid"
+        >
+          Log In with Password
+        </button>
+
+        <button
+          class="block w-full bg-slate-600 text-white"
+          mat-flat-button
+          type="button"
+          (click)="sendOTP()"
+          [disabled]="!formGroup.valid"
+        >
+          Log In with OTP
+        </button>
+      </div>
+
+      <!-- Password -->
+      <ng-container *ngIf="mode === 'password'">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            required
+            matInput
+            type="password"
+            class="tracking-widest"
+            formControlName="password"
+            id="password"
+          />
+        </mat-form-field>
+
+        <!-- Confirm Button -->
+        <button
+          mat-flat-button
+          class="bg-gray-700 rounded-md w-full text-white"
+          type="submit"
+        >
+          Log In
+        </button>
+
+        <!-- Chage Number -->
+        <div class="my-2 flex justify-center">
+          <button
+            mat-button
+            type="button"
+            class="text-indigo-500"
+            (click)="changePhone()"
+          >
+            Change Phone Number
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- OTP Code -->
+      <ng-container *ngIf="mode === 'otp'">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>OTP</mat-label>
+          <input
+            matInput
+            type="tel"
+            class="tracking-widest"
+            autocapitalize="off"
+            autocomplete="off"
+            formControlName="otpCode"
+            id="otpCode"
+            minlength="6"
+            maxlength="6"
+          />
+        </mat-form-field>
+
+        <!-- Confirm Button -->
+        <button
+          mat-flat-button
+          [disabled]="isLoading || !(otpCode.value && otpCode.valid)"
+          class="bg-gray-700 rounded-md w-full text-white"
+          type="submit"
+        >
+          Confirm
+        </button>
+
+        <!-- Chage Number -->
+        <div class="my-2 flex justify-center">
+          <button
+            mat-button
+            type="button"
+            class="text-indigo-500"
+            (click)="changePhone()"
+          >
+            Change Phone Number
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</form>
+
+<!-- for Google Recaptcha -->
+<div id="recaptcha"></div>

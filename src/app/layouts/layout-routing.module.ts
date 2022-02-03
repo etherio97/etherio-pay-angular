@@ -4,15 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './layout.component';
-import { AuthGuard } from '../guards/auth.guard';
-import { HomeComponent } from '../home/home.component';
+import { AuthGuard } from '../pages/guards/auth.guard';
+import { HomeComponent } from '../pages/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { BannerComponent } from '../home/banner/banner.component';
-import { HeaderComponent } from '../home/header/header.component';
-import { FeatureButtonComponent } from '../home/feature-button/feature-button.component';
-import { FeatureButtonsComponent } from '../home/feature-buttons/feature-buttons.component';
-import { TransferComponent } from '../transfer/transfer.component';
+import { BannerComponent } from '../pages/home/banner/banner.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { FeatureButtonsComponent } from '../components/feature-buttons/feature-buttons.component';
+import { TransferComponent } from '../pages/transfer/transfer.component';
 import { BackButtonComponent } from '../components/back-button/back-button.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,19 +20,21 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConfirmDialogComponent } from '../transfer/confirm-dialog/confirm-dialog.component';
-import { RecievedComponent } from '../history/recieved/recieved.component';
+import { ConfirmDialogComponent } from '../pages/transfer/confirm-dialog/confirm-dialog.component';
+import { RecievedComponent } from '../pages/history/recieved/recieved.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { SentComponent } from '../history/sent/sent.component';
+import { SentComponent } from '../pages/history/sent/sent.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AccountService } from '../shared/account.service';
-import { ScanComponent } from '../scan/scan.component';
+import { ScanComponent } from '../pages/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { GiftCardsComponent } from '../gift-cards/gift-cards.component';
-import { GiftCardComponent } from '../gift-cards/gift-card/gift-card.component';
+import { GiftCardsComponent } from '../pages/gift-cards/gift-cards.component';
+import { GiftCardComponent } from '../pages/gift-cards/gift-card/gift-card.component';
 import { GiftCardService } from '../shared/gift-card.service';
-import { GiftCardDetailComponent } from '../gift-cards/gift-card-detail/gift-card-detail.component';
-import { StartUsingComponent } from '../home/start-using/start-using.component';
+import { GiftCardDetailComponent } from '../pages/gift-cards/gift-card-detail/gift-card-detail.component';
+import { StartUsingComponent } from '../components/start-using/start-using.component';
+import { ProfileComponent } from '../pages/profile/profile.component';
+import { FeatureButtonComponent } from '../components/feature-button/feature-button.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
         path: 'gifts/:id',
         component: GiftCardDetailComponent,
       },
+      {
+        path: 'account',
+        component: ProfileComponent,
+      },
     ],
   },
 ];
@@ -91,6 +96,7 @@ const routes: Routes = [
     GiftCardComponent,
     GiftCardDetailComponent,
     StartUsingComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
