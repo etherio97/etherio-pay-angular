@@ -1,18 +1,20 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     loadChildren: () =>
-      import("./layouts/layout-routing.module").then(
+      import('./layouts/layout-routing.module').then(
         (m) => m.LayoutRoutingModule
       ),
   },
   {
-    path: "auth",
+    path: 'auth',
     loadChildren: () =>
-      import("./auth/auth-routing.module").then((m) => m.AuthRoutingModule),
+      import('./pages/auth/auth-routing.module').then(
+        (m) => m.AuthRoutingModule
+      ),
   },
 ];
 

@@ -5,7 +5,7 @@
       class="mb-4 w-full rounded-lg py-4 px-2 bg-red-500 text-white text-center"
       *ngIf="transactionError"
     >
-      {{transactionError}}
+      {{ transactionError }}
     </div>
 
     <mat-form-field appearance="outline" class="w-full">
@@ -17,9 +17,7 @@
         [(ngModel)]="recipient"
         (change)="searchAccount()"
       />
-      <span matPrefix class="pr-2 relative -top-1 tracking-widest">
-        09
-      </span>
+      <span matPrefix class="pr-2 relative -top-1 tracking-widest"> 09 </span>
       <button
         matSuffix
         mat-icon-button
@@ -63,18 +61,18 @@
 
     <div class="grid grid-cols-4">
       <div
-        *ngFor="let value of options; let i = index;"
+        *ngFor="let value of options; let i = index"
         class="border border-gray-400 w-full text-center py-1 cursor-pointer"
         (click)="selectAmount(value)"
         [ngClass]="{
-          'bg-gray-600 text-white hover:bg-gray-400':amount==value,
-          'hover:bg-gray-200':amount!=value,
+          'bg-gray-600 text-white hover:bg-gray-400': amount == value,
+          'hover:bg-gray-200': amount != value,
           'rounded-l-md': i == 0,
           'border-r-0': i < options.length - 1,
           'rounded-r-md': i == options.length - 1
         }"
       >
-        {{value.toLocaleString()}}
+        {{ value.toLocaleString() }}
       </div>
     </div>
 

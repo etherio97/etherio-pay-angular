@@ -27,3 +27,8 @@ export const SERVICE_URL = {
   GET_PACKAGE: `${BASE_URL}/gift-cards`,
   GET_ALL_PACKAGES: `${BASE_URL}/gift-cards/all`,
 };
+
+export const VALIDATOR_PATTERNS = {
+  PHONE_NUMBER: /^\+?[0-9]{9,12}$/,
+  OTP_CODE: /^[0-9]{6}$/,
+};

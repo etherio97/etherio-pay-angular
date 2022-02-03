@@ -3,14 +3,10 @@
 
   <h2>Scan QR</h2>
 
-  <div *ngIf="allowed;else confirmation">
-    <div *ngIf="!hasDevices">
-      No camera found on this device.
-    </div>
+  <div *ngIf="allowed; else confirmation">
+    <div *ngIf="!hasDevices">No camera found on this device.</div>
 
-    <div *ngIf="!hasPermission">
-      Cannot access camera!
-    </div>
+    <div *ngIf="!hasPermission">Cannot access camera!</div>
 
     <zxing-scanner
       [device]="deviceCurrent"
@@ -30,7 +26,7 @@
       <h2>You need to allow camera access!</h2>
 
       <div class="mt-4">
-        <button mat-button class="w-full" (click)="allowed=true">OK</button>
+        <button mat-button class="w-full" (click)="allowed = true">OK</button>
       </div>
     </div>
   </ng-template>
