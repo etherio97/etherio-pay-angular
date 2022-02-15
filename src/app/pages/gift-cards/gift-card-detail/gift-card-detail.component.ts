@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "src/app/shared/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import {
   GiftCardResponse,
   GiftCardService,
-} from "src/app/shared/gift-card.service";
+} from 'src/app/shared/services/gift-card.service';
 
 @Component({
-  selector: "app-gift-card-detail",
-  templateUrl: "./gift-card-detail.component.html",
+  selector: 'app-gift-card-detail',
+  templateUrl: './gift-card-detail.component.html',
 })
 export class GiftCardDetailComponent implements OnInit {
-  private token = "";
+  private token = '';
   giftCards: GiftCardResponse[] = [];
 
   constructor(
@@ -21,7 +21,7 @@ export class GiftCardDetailComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.token = (await this.auth.getCurrentUser()?.getIdToken()) || "";
+    this.token = (await this.auth.getCurrentUser()?.getIdToken()) || '';
 
     this.route.params.subscribe(({ id }) => {
       this.gift.getAll(id, this.token).subscribe((data) => {

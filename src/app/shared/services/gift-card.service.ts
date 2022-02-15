@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { SERVICE_URL } from "../app.config";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { SERVICE_URL } from '../../app.config';
 
 export interface GiftCardPackageResponse {
   id: string;
@@ -17,7 +17,7 @@ export interface GiftCardResponse {
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class GiftCardService {
   constructor(private http: HttpClient) {}

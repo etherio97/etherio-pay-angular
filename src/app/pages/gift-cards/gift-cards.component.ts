@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import {
   GiftCardPackageResponse,
   GiftCardService,
-} from '../../shared/gift-card.service';
+} from 'src/app/shared/services/gift-card.service';
 
 @Component({
   selector: 'app-gift-cards',

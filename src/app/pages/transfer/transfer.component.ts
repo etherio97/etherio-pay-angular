@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getIdToken, signOut } from '@firebase/auth';
-import { AccountService } from '../../shared/account.service';
-import { AuthService } from '../../shared/auth.service';
+import { AccountService } from '../../shared/services/account.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { StartUsingComponent } from '../../components/start-using/start-using.component';
+import { StoreService } from 'src/app/shared/services/store.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private account: AccountService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: StoreService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -40,6 +42,8 @@ export class HomeComponent implements OnInit {
         user.uid;
 
       await this.reloadData();
+
+      this.store.on('balance', () => this.reloadData());
 
       if (this.balance === '') {
         this.balance = '0';

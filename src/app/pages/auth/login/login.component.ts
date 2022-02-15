@@ -1,11 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import {
   Auth,
   RecaptchaVerifier,
@@ -23,7 +18,7 @@ import { VALIDATOR_PATTERNS } from 'src/app/app.config';
   styleUrls: ['./login.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   loaded = false;
   isLoading = false;
   formGroup: FormGroup;
@@ -56,13 +51,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
+  private renderRecaptcha() {
     this.recaptcha = new RecaptchaVerifier(
       'recaptcha',
       { size: 'invisible' },
       this.auth
     );
-    this.recaptcha.render();
+    return this.recaptcha.render();
   }
 
   async login() {
@@ -76,9 +71,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private async logInWithPassword() {
-    //
-  }
+  private async logInWithPassword() {}
 
   private async logInWithOtp() {
     try {
@@ -98,20 +91,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   setLoginMode(mode: 'password' | 'otp') {
     this.mode = mode;
-    this.loaded = true;
+    this.loaded = false;
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLInputElement>('input#' + mode)?.focus();
+    });
+    return true;
   }
 
   async sendOTP() {
     if (this.loaded) return;
+    this.recaptcha || (await this.renderRecaptcha());
     this.loaded = true;
-    this.setLoginMode('otp');
     this.confirmationResult = await signInWithPhoneNumber(
       this.auth,
       this.localPhone,
       this.recaptcha
     );
     requestAnimationFrame(() => {
-      document.querySelector<HTMLInputElement>('input#otpCode')?.focus();
+      document.querySelector<HTMLInputElement>('input#otp')?.focus();
     });
   }
 
@@ -121,18 +118,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.formGroup.reset();
     requestAnimationFrame(() => {
       document.querySelector<HTMLInputElement>('input#phoneNumber')?.focus();
-      document.querySelector<HTMLInputElement>('input#phoneNumber')?.select();
+      // document.querySelector<HTMLInputElement>('input#phoneNumber')?.select();
     });
   }
 
   private handleError(err: any) {
     this.error = true;
-    switch (err.message) {
+    switch (err.code) {
       case 'auth/invalid-verification-code':
         this.errorMessage = 'Invalid verification code';
         break;
       default:
-        this.errorMessage = 'Something went wrong';
+        this.errorMessage = err.message;
     }
   }
 

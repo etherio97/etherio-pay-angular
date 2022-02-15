@@ -22,7 +22,6 @@
           mat-flat-button
           type="button"
           (click)="setLoginMode('password')"
-          [disabled]="!formGroup.valid"
         >
           Log In with Password
         </button>
@@ -31,8 +30,7 @@
           class="block w-full bg-slate-600 text-white"
           mat-flat-button
           type="button"
-          (click)="sendOTP()"
-          [disabled]="!formGroup.valid"
+          (click)="setLoginMode('otp'); sendOTP()"
         >
           Log In with OTP
         </button>
@@ -82,13 +80,16 @@
             matInput
             type="tel"
             class="tracking-widest"
-            autocapitalize="off"
+            inputmode="numeric"
             autocomplete="off"
             formControlName="otpCode"
-            id="otpCode"
+            id="otp"
             minlength="6"
             maxlength="6"
           />
+          <mat-hint *ngIf="error" class="pt-2.5 pb-3">
+            {{ errorMessage }}
+          </mat-hint>
         </mat-form-field>
 
         <!-- Confirm Button -->

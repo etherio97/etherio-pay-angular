@@ -1,4 +1,4 @@
-import { APP_BOOTSTRAP_LISTENER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,12 +25,12 @@ import { RecievedComponent } from '../pages/history/recieved/recieved.component'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SentComponent } from '../pages/history/sent/sent.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { AccountService } from '../shared/account.service';
+import { AccountService } from '../shared/services/account.service';
 import { ScanComponent } from '../pages/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { GiftCardsComponent } from '../pages/gift-cards/gift-cards.component';
 import { GiftCardComponent } from '../pages/gift-cards/gift-card/gift-card.component';
-import { GiftCardService } from '../shared/gift-card.service';
+import { GiftCardService } from '../shared/services/gift-card.service';
 import { GiftCardDetailComponent } from '../pages/gift-cards/gift-card-detail/gift-card-detail.component';
 import { StartUsingComponent } from '../components/start-using/start-using.component';
 import { ProfileComponent } from '../pages/profile/profile.component';

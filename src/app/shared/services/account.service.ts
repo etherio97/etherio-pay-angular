@@ -1,9 +1,9 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { SERVICE_URL } from "../app.config";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { SERVICE_URL } from '../../app.config';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AccountService {
   constructor(private http: HttpClient) {}
