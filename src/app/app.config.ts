@@ -3,11 +3,11 @@ import { FirebaseOptions } from '@firebase/app';
 let HOSTNAME = window.location.hostname;
 let BASE_URL = '/api';
 
-if (!HOSTNAME.includes('.vercel.app')) {
+if (!HOSTNAME.includes('etherio.fun')) {
   BASE_URL = 'https://etherio-pay.herokuapp.com';
 
   if (!HOSTNAME.match(/^(localhost|\d)/)) {
-    window.location.href = 'https://etherio-pay.vercel.app';
+    window.location.href = 'https://pay.etherio.fun';
   }
 }
 
