@@ -1,5 +1,8 @@
 <div class="my-5">
-  <app-header [identifier]="identifier" [balance]="balance"></app-header>
+  <app-header
+    [identifier]="identifier"
+    [balance]="balance$ | async"
+  ></app-header>
 
   <app-feature-buttons></app-feature-buttons>
 

@@ -31,7 +31,7 @@ export class RecievedComponent implements OnInit, AfterViewInit {
     this.loading = true;
 
     this.account
-      .getRecieved(this.token)
+      .getRecieved()
       .toPromise()
       .then((data) => {
         this.transactions = data || [];

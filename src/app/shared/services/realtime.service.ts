@@ -5,7 +5,7 @@ import { getFirestore, collection, onSnapshot, doc } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root',
 })
-export class StoreService {
+export class RealtimeService {
   private readonly $firestore = getFirestore(getApp());
   private readonly $ref = collection(this.$firestore, 'accounts');
   private tracked = false;

@@ -8,13 +8,15 @@ import { environment } from 'src/environments/environment';
 export function firebaseInitializer() {
   return async () => {
     AuthService.app = initializeApp(firebaseConfig);
-
     const onAuthChanged = () =>
       new Promise((resolve: any) =>
-        getAuth(AuthService.app).onAuthStateChanged((user: User | null) => {
-          AuthService.currentUser = user;
-          resolve();
-        })
+        getAuth(AuthService.app).onAuthStateChanged(
+          async (user: User | null) => {
+            AuthService.currentUser = user;
+            AuthService.accessToken = user ? await user.getIdToken() : null;
+            resolve();
+          }
+        )
       );
 
     if (environment.production) {

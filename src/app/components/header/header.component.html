@@ -1,14 +1,14 @@
 <div
-  class="rounded-lg py-8 px-2 bg-gradient-to-tl from-pink-600 to-purple-700 text-white shadow"
+  class="px-2 py-8 text-white rounded-lg shadow bg-gradient-to-tl from-pink-600 to-purple-700"
 >
-  <div class="font-medium text-lg mx-2 tracking-wider">
+  <div class="mx-2 text-lg font-medium tracking-wider">
     {{ identifier }}
   </div>
-  <div class="font-medium mx-2 tracking-wider mt-2 text-sm flex items-center">
+  <div class="flex items-center mx-2 mt-2 text-sm font-medium tracking-wider">
     <span class="pr-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
+        class="w-5 h-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -23,13 +23,13 @@
     </span>
 
     <span class="min-w-[86px]">
-      {{ isVisibleBalance ? balance : '**********' }}
+      {{ isVisibleBalance ? num(balance) : "**********" }}
     </span>
 
-    <button mat-icon-button (click)="isVisibleBalance=!isVisibleBalance">
+    <button mat-icon-button (click)="isVisibleBalance = !isVisibleBalance">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 mx-auto"
+        class="w-4 h-4 mx-auto"
         viewBox="0 0 20 20"
         fill="currentColor"
         *ngIf="isVisibleBalance"
@@ -43,7 +43,7 @@
       </svg>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 mx-auto"
+        class="w-4 h-4 mx-auto"
         viewBox="0 0 20 20"
         fill="currentColor"
         *ngIf="!isVisibleBalance"

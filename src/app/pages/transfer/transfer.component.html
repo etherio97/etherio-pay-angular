@@ -1,8 +1,8 @@
 <div class="py-4">
   <app-back-button></app-back-button>
-  <div class="mt-2 mx-4">
+  <div class="mx-4 mt-2">
     <div
-      class="mb-4 w-full rounded-lg py-4 px-2 bg-red-500 text-white text-center"
+      class="w-full px-2 py-4 mb-4 text-center text-white bg-red-500 rounded-lg"
       *ngIf="transactionError"
     >
       {{ transactionError }}
@@ -14,19 +14,20 @@
         type="tel"
         matInput
         ngModel
+        name="recipient"
+        placeholder="09XXXXXXXXX"
         [(ngModel)]="recipient"
         (change)="searchAccount()"
       />
-      <span matPrefix class="pr-2 relative -top-1 tracking-widest"> 09 </span>
       <button
         matSuffix
         mat-icon-button
-        class="pr-2 relative -top-1 tracking-widest"
+        class="relative pr-2 tracking-widest -top-1"
         (click)="searchAccount()"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          class="w-5 h-5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -43,7 +44,11 @@
       </mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
+    <mat-form-field
+      appearance="outline"
+      class="w-full"
+      *ngIf="accounts.length > 1"
+    >
       <mat-label>Account ID</mat-label>
       <mat-select placeholder="Account" [(ngModel)]="recipientId">
         <mat-option *ngFor="let account of accounts" [value]="account">
@@ -55,14 +60,20 @@
     <div class="mt-4">
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Amount</mat-label>
-        <input type="number" autocomplete="off" [(ngModel)]="amount" matInput />
+        <input
+          type="tel"
+          inputmode="numeric"
+          autocomplete="off"
+          [(ngModel)]="amount"
+          matInput
+        />
       </mat-form-field>
     </div>
 
     <div class="grid grid-cols-4">
       <div
         *ngFor="let value of options; let i = index"
-        class="border border-gray-400 w-full text-center py-1 cursor-pointer"
+        class="w-full py-1 text-center border border-gray-400 cursor-pointer"
         (click)="selectAmount(value)"
         [ngClass]="{
           'bg-gray-600 text-white hover:bg-gray-400': amount == value,
@@ -82,13 +93,14 @@
         class="w-full"
         color="primary"
         (click)="sendTransfer()"
+        [disabled]="!recipientId"
       >
         <mat-icon class="mr-2">send</mat-icon> Send Transfer
       </button>
 
       <button
         mat-flat-button
-        class="w-full bg-gray-500 text-white"
+        class="w-full text-white bg-gray-500"
         routerLink="/"
       >
         Cancel

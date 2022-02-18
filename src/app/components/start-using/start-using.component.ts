@@ -19,7 +19,7 @@ export class StartUsingComponent {
     if (this.loading) return;
     this.loading = true;
     this.account
-      .startUsingEtherioPay(this.token)
+      .startUsingEtherioPay()
       .toPromise()
       .then(() => {
         this.reload();

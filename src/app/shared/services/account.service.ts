@@ -8,42 +8,24 @@ import { SERVICE_URL } from '../../app.config';
 export class AccountService {
   constructor(private http: HttpClient) {}
 
-  getAccount(token: string) {
+  getAccount() {
     return this.http.get<{ balance: number | null; identifier: string }>(
-      SERVICE_URL.GET_ACCOUNT,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      SERVICE_URL.GET_ACCOUNT
     );
   }
 
-  startUsingEtherioPay(token: string) {
+  startUsingEtherioPay() {
     return this.http.post<{ balance: number; identifier: string }>(
       SERVICE_URL.GET_ACCOUNT,
-      null,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      null
     );
   }
 
-  getTransfered(token: string) {
-    return this.http.get<any[]>(SERVICE_URL.TRAN_TRANSFERED, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  getTransfered() {
+    return this.http.get<any[]>(SERVICE_URL.TRAN_TRANSFERED);
   }
 
-  getRecieved(token: string) {
-    return this.http.get<any[]>(SERVICE_URL.TRAN_RECIEVED, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  getRecieved() {
+    return this.http.get<any[]>(SERVICE_URL.TRAN_RECIEVED);
   }
 }

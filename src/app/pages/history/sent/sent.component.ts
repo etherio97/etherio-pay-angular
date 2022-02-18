@@ -31,7 +31,7 @@ export class SentComponent implements OnInit, AfterViewInit {
     this.loading = true;
 
     this.account
-      .getTransfered(this.token)
+      .getTransfered()
       .toPromise()
       .then((data) => {
         this.transactions = data || [];

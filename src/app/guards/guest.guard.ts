@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CanActivateChild, Router, UrlTree } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivateChild {
+export class GuestGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivateChild(): boolean | UrlTree {
+  canActivate(): boolean | UrlTree {
     const currentUser = this.authService.getCurrentUser();
-    return currentUser ? true : this.router.createUrlTree(['auth']);
+    return currentUser ? this.router.createUrlTree(['']) : true;
   }
 }

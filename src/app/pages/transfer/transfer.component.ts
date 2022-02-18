@@ -28,39 +28,22 @@ export class TransferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService
-      .getAuth()
-      .currentUser?.getIdToken()
-      .then((token) => {
-        this.token = token;
-        if (this.recipient) {
-          this.searchAccount();
-        }
-      });
-
     this.route.queryParams.subscribe(({ recipient, amount }) => {
       this.recipient = recipient || '';
-      this.amount = amount || 0;
+      this.amount = amount || '';
     });
   }
 
   searchAccount(): void {
-    const identifier = '+959' + this.recipient;
-    const headers = {
-      authorization: `Bearer ${this.token}`,
-      'content-type': 'application/json',
-    };
+    const identifier = this.recipientMsisdn;
     this.accounts = [];
     this.recipientId = '';
     this.accountError = false;
     this.http
-      .post(
-        'https://etherio-pay.herokuapp.com/account/identify',
-        { identifier },
-        { headers }
-      )
-      .toPromise()
-      .then((accounts: any) => {
+      .post('https://etherio-pay.herokuapp.com/account/identify', {
+        identifier,
+      })
+      .subscribe((accounts: any) => {
         this.accounts = accounts;
         if (accounts.length) {
           this.recipientId = accounts[0];
@@ -70,8 +53,8 @@ export class TransferComponent implements OnInit {
       });
   }
 
-  selectAmount(amount: number): void {
-    this.amount = amount;
+  selectAmount(amount: number | string): void {
+    this.amount = typeof amount === 'string' ? parseInt(amount) : amount;
   }
 
   sendTransfer(): void {
@@ -85,7 +68,8 @@ export class TransferComponent implements OnInit {
       authorization: `Bearer ${this.token}`,
       'content-type': 'application/json',
     };
-    const amount = this.amount;
+    const amount =
+      typeof this.amount === 'string' ? parseInt(this.amount) : this.amount;
     this.accountError = false;
     this.http
       .post(
@@ -104,5 +88,12 @@ export class TransferComponent implements OnInit {
 
   private isValid(phone: string) {
     return phone.match(/^(0|\+95)9[2-9][0-9]{6,9}$/);
+  }
+
+  get recipientMsisdn() {
+    let recipient: string = this.recipient;
+    if (recipient.slice(0, 1) === '+') return recipient;
+    if (recipient.slice(0, 2) === '09') return `+959${recipient.slice(2)}`;
+    return `+${recipient}`;
   }
 }

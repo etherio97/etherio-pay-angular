@@ -16,6 +16,7 @@ import {
 export class AuthService {
   public static app: FirebaseApp;
   public static currentUser: User | null;
+  public static accessToken: string | null;
 
   getAuth(): Auth {
     return getAuth(AuthService.app);
@@ -42,5 +43,9 @@ export class AuthService {
     profile: { displayName?: string; photoURL?: string }
   ) {
     return updateProfile(user, profile);
+  }
+
+  getAccessToken() {
+    return AuthService.accessToken;
   }
 }
