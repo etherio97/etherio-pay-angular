@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { signOut } from '@firebase/auth';
 import { BalanceService } from 'src/app/shared/services/balance.service';
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private dialog: MatDialog,
     private realtime: RealtimeService,
-    private balance: BalanceService
+    private balance: BalanceService,
+    private snackbar: MatSnackBar
   ) {}
 
   balance$: any;
@@ -41,7 +43,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       user.email ||
       user.uid;
     this.balance$ = this.balance.reload();
-    this.realtime.on('balance', () => this.balance.reload().subscribe());
+    this.realtime.on('balance', () => {
+      this.balance.reload().subscribe();
+      this.snackbar.open('You have new notification!', null, {
+        duration: 5000,
+      });
+    });
   }
 
   askStartUsingEtherioPay() {
