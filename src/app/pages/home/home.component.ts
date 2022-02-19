@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { getIdToken, signOut } from '@firebase/auth';
-import { AccountService } from '../../shared/services/account.service';
-import { AuthService } from '../../shared/services/auth.service';
-import { StartUsingComponent } from '../../components/start-using/start-using.component';
-import { RealtimeService } from 'src/app/shared/services/realtime.service';
+import { signOut } from '@firebase/auth';
 import { BalanceService } from 'src/app/shared/services/balance.service';
+import { RealtimeService } from 'src/app/shared/services/realtime.service';
+import { StartUsingComponent } from '../../components/start-using/start-using.component';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +20,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     './assets/img/banner-2.jpg',
     './assets/img/banner-3.jpg',
   ];
+  startUsingModal: any;
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private account: AccountService,
     private dialog: MatDialog,
     private realtime: RealtimeService,
     private balance: BalanceService
@@ -46,13 +45,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   askStartUsingEtherioPay() {
-    // this.balance = '0';
-    const modal = this.dialog.open(StartUsingComponent, {
-      disableClose: true,
-    });
-    modal.componentInstance.close = () => modal.close();
-    modal.componentInstance.reload = () => this.balance.reload().subscribe();
-    modal.componentInstance.signOut = () => this.signOut();
+    if (!this.startUsingModal) {
+      this.startUsingModal = this.dialog.open(StartUsingComponent, {
+        disableClose: true,
+        width: '100%',
+        maxWidth: '100vw',
+        height: '100vh',
+      });
+      this.startUsingModal.componentInstance.close = () =>
+        this.startUsingModal.close();
+      this.startUsingModal.componentInstance.reload = () =>
+        this.balance.reload().subscribe();
+      this.startUsingModal.componentInstance.signOut = () => this.signOut();
+    }
   }
 
   ngOnDestroy(): void {}

@@ -1,9 +1,9 @@
+import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import { getAuth, User } from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
+import { environment } from 'src/environments/environment';
 import { firebaseConfig } from './app.config';
 import { AuthService } from './shared/services/auth.service';
-import { environment } from 'src/environments/environment';
 
 export function firebaseInitializer() {
   return async () => {
@@ -13,7 +13,7 @@ export function firebaseInitializer() {
         getAuth(AuthService.app).onAuthStateChanged(
           async (user: User | null) => {
             AuthService.currentUser = user;
-            AuthService.accessToken = user ? await user.getIdToken() : null;
+            AuthService.accessToken = await user?.getIdToken();
             resolve();
           }
         )

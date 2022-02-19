@@ -1,80 +1,36 @@
 <form [formGroup]="formGroup" (ngSubmit)="login()">
-  <div class="min-h-screen flex items-center justify-center bg-gray-200">
-    <div class="w-full rounded shadow bg-gray-50 p-6 sm:w-96 space-y-2">
+  <div class="flex items-center justify-center min-h-screen bg-gray-200">
+    <div class="w-full p-6 space-y-2 rounded shadow bg-gray-50 sm:w-96">
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Phone Number</mat-label>
         <input
-          id="phoneNumber"
-          name="phoneNumber"
+          name="msisdn"
           matInput
           type="tel"
           inputmode="tel"
           class="tracking-widest"
-          formControlName="phoneNumber"
-          [readonly]="loaded"
+          formControlName="msisdn"
+          [readonly]="isSentOTP"
           placeholder="09XXXXXXXX"
+          #msisdnRef
         />
       </mat-form-field>
 
-      <div class="space-y-5 -mt-2" *ngIf="!mode">
-        <button
-          class="block w-full bg-slate-800 text-white"
-          mat-flat-button
-          type="button"
-          (click)="setLoginMode('password')"
-        >
-          Log In with Password
-        </button>
-
-        <button
-          class="block w-full bg-slate-600 text-white"
-          mat-flat-button
-          type="button"
-          (click)="setLoginMode('otp'); sendOTP()"
-        >
-          Log In with OTP
-        </button>
-      </div>
-
-      <!-- Password -->
-      <ng-container *ngIf="mode === 'password'">
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Password</mat-label>
-          <input
-            required
-            matInput
-            type="password"
-            class="tracking-widest"
-            formControlName="password"
-            id="password"
-          />
-        </mat-form-field>
-
-        <!-- Confirm Button -->
-        <button
-          mat-flat-button
-          class="bg-gray-700 rounded-md w-full text-white"
-          type="submit"
-        >
-          Log In
-        </button>
-
-        <!-- Chage Number -->
-        <div class="my-2 flex justify-center">
+      <ng-container *ngIf="!isSentOTP">
+        <div class="-mt-2 space-y-5">
           <button
-            mat-button
-            type="button"
-            class="text-indigo-500"
-            (click)="changePhone()"
+            class="block w-full text-white bg-slate-600"
+            mat-flat-button
+            type="submit"
+            [disabled]="isSentingOTP || !msisdn.valid"
           >
-            Change Phone Number
+            Log In with OTP
           </button>
         </div>
       </ng-container>
 
-      <!-- OTP Code -->
-      <ng-container *ngIf="mode === 'otp'">
-        <mat-form-field appearance="outline" class="w-full">
+      <ng-container *ngIf="isSentOTP">
+        <mat-form-field appearance="outline" class="w-full" [@expandCollapse]>
           <mat-label>OTP</mat-label>
           <input
             matInput
@@ -83,9 +39,9 @@
             inputmode="numeric"
             autocomplete="off"
             formControlName="otpCode"
-            id="otp"
             minlength="6"
             maxlength="6"
+            #otpRef
           />
           <mat-hint *ngIf="error" class="pt-2.5 pb-3">
             {{ errorMessage }}
@@ -95,15 +51,15 @@
         <!-- Confirm Button -->
         <button
           mat-flat-button
-          [disabled]="isLoading || !(otpCode.value && otpCode.valid)"
-          class="bg-gray-700 rounded-md w-full text-white"
+          class="w-full text-white bg-gray-700 rounded-md"
           type="submit"
+          [disabled]="isLoading || !(otpCode.value && otpCode.valid)"
         >
           Confirm
         </button>
 
         <!-- Chage Number -->
-        <div class="my-2 flex justify-center">
+        <div class="flex justify-center my-2">
           <button
             mat-button
             type="button"

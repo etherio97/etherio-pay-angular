@@ -1,3 +1,6 @@
+<template [id]="(balance$ | async) === null && askStartUsingEtherioPay()">
+</template>
+
 <div class="my-5">
   <app-header
     [identifier]="identifier"

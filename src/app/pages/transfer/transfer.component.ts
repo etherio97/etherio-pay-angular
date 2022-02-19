@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -20,7 +19,6 @@ export class TransferComponent implements OnInit {
   transactionError = '';
 
   constructor(
-    private authService: AuthService,
     private http: HttpClient,
     private dialog: MatDialog,
     private router: Router,

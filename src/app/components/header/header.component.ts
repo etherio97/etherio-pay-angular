@@ -13,7 +13,7 @@ export class HeaderComponent {
 
   isVisibleBalance = false;
 
-  num(v: null | number | string) {
+  num(v: any) {
     return v === null
       ? ''
       : (typeof v === 'string' ? parseInt(v) : v).toLocaleString();

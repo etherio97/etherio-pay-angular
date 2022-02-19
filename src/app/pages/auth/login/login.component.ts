@@ -1,32 +1,45 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import {
-  Auth,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import {
   ConfirmationResult,
   PhoneAuthProvider,
+  RecaptchaVerifier,
   signInWithCredential,
+  signInWithPhoneNumber,
 } from 'firebase/auth';
-import { Router } from '@angular/router';
 import { VALIDATOR_PATTERNS } from 'src/app/app.config';
+import { expandCollapse } from 'src/app/shared/animations/expand-collapse';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styles: [
+    '.mat-form-field-wrapper { padding-bottom: 0.6rem; }',
+    '.mat-hint { padding-top: 7px; }',
+  ],
   encapsulation: ViewEncapsulation.None,
+  animations: [expandCollapse],
 })
 export class LoginComponent implements OnInit {
-  loaded = false;
+  isSentingOTP = false;
+  isSentOTP = false;
   isLoading = false;
+  isLoaded = false;
   formGroup: FormGroup;
   error = false;
   errorMessage = '';
-  mode: 'password' | 'otp' | undefined;
 
-  private auth: Auth;
+  @ViewChild('otpRef') otpRef: ElementRef;
+  @ViewChild('msisdnRef') msisdnRef: ElementRef;
+
   private recaptcha: RecaptchaVerifier;
   private confirmationResult: ConfirmationResult;
 
@@ -37,9 +50,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth = this.authService.getAuth();
     this.formGroup = this.fb.group({
-      phoneNumber: [
+      msisdn: [
         '',
         [
           Validators.required,
@@ -47,79 +59,61 @@ export class LoginComponent implements OnInit {
         ],
       ],
       otpCode: ['', [Validators.pattern(VALIDATOR_PATTERNS.OTP_CODE)]],
-      password: [''],
     });
   }
 
   private renderRecaptcha() {
+    this.isSentingOTP = true;
     this.recaptcha = new RecaptchaVerifier(
       'recaptcha',
       { size: 'invisible' },
-      this.auth
+      this.authService.getAuth()
     );
     return this.recaptcha.render();
   }
 
-  async login() {
-    if (!this.valid) return;
-    this.error = false;
-    switch (this.mode) {
-      case 'otp':
-        return this.logInWithOtp();
-      case 'password':
-        return this.logInWithPassword();
-    }
+  login() {
+    this.isSentOTP ? this.logInWithOtp() : this.sendOTP();
   }
 
-  private async logInWithPassword() {}
-
-  private async logInWithOtp() {
-    try {
-      this.isLoading = true;
-      let credential = PhoneAuthProvider.credential(
-        this.confirmationResult.verificationId,
-        this.otpCode.value
-      );
-      await signInWithCredential(this.auth, credential);
-      this.router.navigate(['']);
-    } catch (e) {
-      this.isLoading = false;
-      this.otpCode.setValue('');
-      this.handleError(e);
-    }
-  }
-
-  setLoginMode(mode: 'password' | 'otp') {
-    this.mode = mode;
-    this.loaded = false;
-    requestAnimationFrame(() => {
-      document.querySelector<HTMLInputElement>('input#' + mode)?.focus();
-    });
-    return true;
+  private logInWithOtp() {
+    this.isLoading = true;
+    let credential = PhoneAuthProvider.credential(
+      this.confirmationResult.verificationId,
+      this.otpCode.value
+    );
+    signInWithCredential(this.authService.getAuth(), credential)
+      .then(() => this.router.navigate(['']))
+      .catch((e) => {
+        this.isLoading = false;
+        this.otpCode.reset();
+        this.handleError(e);
+      });
   }
 
   async sendOTP() {
-    if (this.loaded) return;
+    this.clearError();
     this.recaptcha || (await this.renderRecaptcha());
-    this.loaded = true;
     this.confirmationResult = await signInWithPhoneNumber(
-      this.auth,
+      this.authService.getAuth(),
       this.localPhone,
       this.recaptcha
     );
-    requestAnimationFrame(() => {
-      document.querySelector<HTMLInputElement>('input#otp')?.focus();
-    });
+    this.isSentingOTP = false;
+    this.isSentOTP = true;
+    requestAnimationFrame(() => this.otpRef.nativeElement.focus());
   }
 
   changePhone(): void {
-    this.error = this.loaded = false;
-    this.mode = undefined;
-    this.formGroup.reset();
-    requestAnimationFrame(() => {
-      document.querySelector<HTMLInputElement>('input#phoneNumber')?.focus();
-      // document.querySelector<HTMLInputElement>('input#phoneNumber')?.select();
-    });
+    this.isSentOTP = this.isSentingOTP = false;
+    this.clearError();
+    this.otpCode.reset();
+    requestAnimationFrame(() => this.msisdnRef.nativeElement.focus());
+  }
+
+  private clearError() {
+    this.error = false;
+    this.errorMessage = '';
   }
 
   private handleError(err: any) {
@@ -127,32 +121,26 @@ export class LoginComponent implements OnInit {
     switch (err.code) {
       case 'auth/invalid-verification-code':
         this.errorMessage = 'Invalid verification code';
+        this.otpCode.reset();
+        requestAnimationFrame(() => this.otpRef.nativeElement.focus());
         break;
       default:
         this.errorMessage = err.message;
     }
   }
 
-  get phoneNumber() {
-    return this.formGroup.get('phoneNumber');
+  get msisdn() {
+    return this.formGroup.get('msisdn');
   }
 
   get otpCode() {
     return this.formGroup.get('otpCode');
   }
 
-  get password() {
-    return this.formGroup.get('password');
-  }
-
   get localPhone() {
-    let phoneNumber: string = this.phoneNumber.value;
-    if (phoneNumber.slice(0, 1) === '+') return phoneNumber;
-    if (phoneNumber.slice(0, 2) === '09') return `+959${phoneNumber.slice(2)}`;
-    return `+${phoneNumber}`;
-  }
-
-  get valid() {
-    return this.loaded && this.formGroup.valid;
+    let msisdn: string = this.msisdn.value;
+    if (msisdn.slice(0, 1) === '+') return msisdn;
+    if (msisdn.slice(0, 2) === '09') return `+959${msisdn.slice(2)}`;
+    return `+${msisdn}`;
   }
 }

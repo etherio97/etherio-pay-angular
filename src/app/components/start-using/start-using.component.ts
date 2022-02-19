@@ -16,7 +16,6 @@ export class StartUsingComponent {
   constructor(private account: AccountService) {}
 
   startUsing(): void {
-    if (this.loading) return;
     this.loading = true;
     this.account
       .startUsingEtherioPay()
@@ -24,7 +23,6 @@ export class StartUsingComponent {
       .then(() => {
         this.reload();
         this.close();
-        this.loading = false;
       })
       .catch((e) => alert(e.message));
   }
