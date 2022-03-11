@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,8 @@ export class HeaderComponent {
   identifier: string;
 
   isVisibleBalance = false;
+
+  constructor(private dialog: MatDialog) {}
 
   num(v: any) {
     return v === null

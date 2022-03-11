@@ -1,25 +1,17 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { signOut } from '@firebase/auth';
 import { Observable } from 'rxjs';
+import { StartUsingComponent } from 'src/app/components/start-using/start-using.component';
 import { BalanceService } from 'src/app/shared/services/balance.service';
 import { RealtimeService } from 'src/app/shared/services/realtime.service';
-import { StartUsingComponent } from '../../components/start-using/start-using.component';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isVisibleBalance: boolean = false;
@@ -32,18 +24,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   identifier: string = '';
 
-  balance$: Observable<any>;
+  balance: number = 0;
 
   startUsingModal: MatDialogRef<StartUsingComponent>;
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private dialog: MatDialog,
     private realtime: RealtimeService,
-    private balance: BalanceService,
+    private balanceService: BalanceService,
     private snackbar: MatSnackBar,
-    private changeDetection: ChangeDetectorRef
+    private dialog: MatDialog
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,13 +44,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       user.displayName ||
       user.email ||
       user.uid;
-    this.balance$ = this.balance.reload();
+    this.balanceService.reload().subscribe((balance) => {
+      if (balance === null) this.askStartUsingEtherioPay();
+      else this.balance = balance;
+    });
     this.realtime.on('balance', () => {
-      this.balance.reload().subscribe();
+      this.reload();
       this.snackbar.open('You have new notification!', null, {
         duration: 5000,
       });
-      this.changeDetection.detectChanges();
+    });
+  }
+
+  reload() {
+    this.balanceService.reload().subscribe((balance) => {
+      this.balance = balance;
     });
   }
 
@@ -73,8 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
       this.startUsingModal.componentInstance.close = () =>
         this.startUsingModal.close();
-      this.startUsingModal.componentInstance.reload = () =>
-        this.balance.reload().subscribe();
+      this.startUsingModal.componentInstance.reload = () => this.reload();
       this.startUsingModal.componentInstance.signOut = () => this.signOut();
     }
   }
