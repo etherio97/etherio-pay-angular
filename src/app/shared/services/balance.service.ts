@@ -18,7 +18,7 @@ export class BalanceService {
   reload() {
     return this.http.get(SERVICE_URL.GET_ACCOUNT).pipe(
       switchMap((data: any) => {
-        this._balance$.next(data.balance);
+        this._balance$.next(data?.balance);
         return this._balance$.asObservable();
       })
     );
