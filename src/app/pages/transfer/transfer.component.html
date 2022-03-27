@@ -69,7 +69,7 @@
         />
       </mat-form-field>
     </div>
-
+    
     <div class="grid grid-cols-4">
       <div
         *ngFor="let value of options; let i = index"
@@ -85,6 +85,13 @@
       >
         {{ value.toLocaleString() }}
       </div>
+    </div>
+    
+    <div class="mt-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Note</mat-label>
+        <textarea matInput class="w-full" [(ngModel)]="note"></textarea>
+      </mat-form-field>
     </div>
 
     <div class="mt-8 space-y-5">

@@ -24,6 +24,8 @@ export const SERVICE_URL = {
   GET_ACCOUNT: `${BASE_URL}/account`,
   TRAN_TRANSFERED: `${BASE_URL}/transaction/transfered`,
   TRAN_RECIEVED: `${BASE_URL}/transaction/recieved`,
+  SEND_TRANSFER: `${BASE_URL}/transfer`,
+  FIND_ACCOUNTS: `${BASE_URL}/account/identify`,
   GET_PACKAGE: `${BASE_URL}/gift-cards`,
   GET_ALL_PACKAGES: `${BASE_URL}/gift-cards/all`,
 };

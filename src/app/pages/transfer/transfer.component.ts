@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TransferService } from './transfer.service';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -14,12 +14,13 @@ export class TransferComponent implements OnInit {
   token = '';
   accounts: string[] = [];
   amount = 0;
+  note = '';
   options = [10000, 50000, 100000, 500000];
   accountError = false;
   transactionError = '';
 
   constructor(
-    private http: HttpClient,
+    private _transferService: TransferService,
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
@@ -37,10 +38,8 @@ export class TransferComponent implements OnInit {
     this.accounts = [];
     this.recipientId = '';
     this.accountError = false;
-    this.http
-      .post('https://etherio-pay.herokuapp.com/account/identify', {
-        identifier,
-      })
+    this
+      .findAccounts(identifier)
       .subscribe((accounts: any) => {
         this.accounts = accounts;
         if (accounts.length) {
@@ -61,26 +60,19 @@ export class TransferComponent implements OnInit {
   }
 
   confirmTransfer(): void {
-    const recipientId = this.recipientId;
-    const headers = {
-      authorization: `Bearer ${this.token}`,
-      'content-type': 'application/json',
-    };
-    const amount =
-      typeof this.amount === 'string' ? parseInt(this.amount) : this.amount;
     this.accountError = false;
-    this.http
-      .post(
-        'https://etherio-pay.herokuapp.com/transfer',
-        { recipientId, amount },
-        { headers }
-      )
-      .toPromise()
-      .then(() => {
+    if (typeof this.amount === 'string') {
+      this.amount = parseInt(this.amount);
+    }
+    this._transferService({
+      amount: this.amount,
+      recipientId: this.recipientId,
+      note: this.note,
+    }).subscribe(() => {
         this.router.navigate(['/']);
-      })
-      .catch((err) => {
-        this.transactionError = err.error?.error;
+      },
+      (err) => {
+        this.transactionError = err.error?.error || 'Something went wrong!';
       });
   }
 
