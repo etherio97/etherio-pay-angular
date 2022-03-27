@@ -38,7 +38,7 @@ export class TransferComponent implements OnInit {
     this.accounts = [];
     this.recipientId = '';
     this.accountError = false;
-    this
+    this._transferService
       .findAccounts(identifier)
       .subscribe((accounts: any) => {
         this.accounts = accounts;
