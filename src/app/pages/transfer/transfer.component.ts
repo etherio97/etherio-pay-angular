@@ -64,16 +64,20 @@ export class TransferComponent implements OnInit {
     if (typeof this.amount === 'string') {
       this.amount = parseInt(this.amount);
     }
-    this._transferService({
-      amount: this.amount,
-      recipientId: this.recipientId,
-      note: this.note,
-    }).subscribe(() => {
-        this.router.navigate(['/']);
-      },
-      (err) => {
-        this.transactionError = err.error?.error || 'Something went wrong!';
-      });
+    this._transferService
+      .sendTransfer({
+        amount: this.amount,
+        recipientId: this.recipientId,
+        note: this.note,
+      })
+      .subscribe(
+        () => {
+          this.router.navigate(['/']);
+        },
+        (err) => {
+          this.transactionError = err.error?.error || 'Something went wrong!';
+        }
+      );
   }
 
   private isValid(phone: string) {
