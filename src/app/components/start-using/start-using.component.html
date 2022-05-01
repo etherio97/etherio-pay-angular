@@ -1,0 +1,78 @@
+<div
+  class="w-full h-full max-w-[480px] mx-auto flex flex-col py-5 justify-between"
+>
+  <div></div>
+  <div class="mx-auto -mt-32">
+    <div
+      class="w-full"
+      class="transition-opacity"
+      [ngClass]="{
+        'duration-300 delay-300 opacity-1': loading,
+        'opacity-0': !loading
+      }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-12 h-12 mx-auto text-indigo-400 animate-spin"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <p class="tracking-wide text-slate-600">
+        Hang on tight, we are creating your account...
+      </p>
+    </div>
+    <div
+      class="space-y-4 text-center transition-opacity duration-300 text-slate-500"
+      [ngClass]="{ 'opacity-0': loading }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-16 h-16 mx-auto text-amber-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+        />
+      </svg>
+      <h2 class="pb-4 text-md">
+        This account doesn't have
+        <span class="font-semibold text-slate-700">Etherio Pay</span>.
+      </h2>
+      <button
+        mat-flat-button
+        class="w-full text-white bg-indigo-700"
+        (click)="startUsing()"
+        [disabled]="loading"
+      >
+        Start using Etherio Pay
+      </button>
+      <button
+        mat-flat-button
+        class="w-full text-white bg-slate-500"
+        (click)="changeAccount()"
+        [disabled]="loading"
+      >
+        Change Account
+      </button>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <span class="text-sm tracking-wide text-gray-500">
+      &copy; Etherio Pay. All right reserved.
+    </span>
+  </div>
+</div>

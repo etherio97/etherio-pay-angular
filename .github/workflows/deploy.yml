@@ -1,0 +1,25 @@
+name: Deploy
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - master
+    paths:
+      - "src/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          cache: yarn
+      - name: Install
+        run: yarn
+      - name: Build
+        run: npx ng build
+      - run: yarn global add firebase-tools
+      - run: firebase deploy --project 'etherio-pay' --token '${{ secrets.FIREBASE_TOKEN }}'

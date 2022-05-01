@@ -1,0 +1,19 @@
+<div class="my-5">
+  <app-header [identifier]="identifier" [balance]="balance"></app-header>
+
+  <app-feature-buttons></app-feature-buttons>
+
+  <div class="mt-4">
+    <app-banner [banners]="banners"></app-banner>
+  </div>
+
+  <button
+    mat-flat-button
+    color="primary"
+    class="w-full"
+    (click)="signOut()"
+    hidden
+  >
+    Sign Out
+  </button>
+</div>

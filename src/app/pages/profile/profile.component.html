@@ -1,0 +1,47 @@
+<form [formGroup]="formGroup" (ngSubmit)="saveChanges()">
+  <div class="my-5 mt-7">
+    <app-back-button></app-back-button>
+    <div class="flex items-center flex-col space-y-4">
+      <img
+        class="border border-black overflow-hidden rounded-full h-40 w-40 object-cover object-center"
+        [src]="formGroup.controls.photoURL.value"
+        alt="avatar"
+      />
+
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" name="name" matInput formControlName="displayName" />
+      </mat-form-field>
+
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input
+          name="phoneNumber"
+          matInput
+          formControlName="phoneNumber"
+          readonly
+        />
+        <mat-hint>mobile number cannot be changed</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Update or create new password</mat-label>
+        <input
+          type="password"
+          name="new-password"
+          matInput
+          formControlName="password"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="bg-slate-600 text-white block w-full"
+        type="submit"
+        [disabled]="!formGroup.touched"
+      >
+        Save Changes
+      </button>
+    </div>
+  </div>
+</form>

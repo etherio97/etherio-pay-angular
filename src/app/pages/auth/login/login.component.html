@@ -1,0 +1,78 @@
+<form [formGroup]="formGroup" (ngSubmit)="login()">
+  <div class="flex items-center justify-center min-h-screen bg-gray-200">
+    <div class="w-full p-6 space-y-2 rounded shadow bg-gray-50 sm:w-96">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Phone Number</mat-label>
+        <input
+          name="msisdn"
+          matInput
+          type="tel"
+          inputmode="tel"
+          class="tracking-widest"
+          formControlName="msisdn"
+          [readonly]="isSentOTP"
+          placeholder="09XXXXXXXX"
+          #msisdnRef
+        />
+      </mat-form-field>
+
+      <ng-container *ngIf="!isSentOTP">
+        <div class="-mt-2 space-y-5">
+          <button
+            class="block w-full text-white bg-slate-600"
+            mat-flat-button
+            type="submit"
+            [disabled]="isSentingOTP || !msisdn.valid"
+          >
+            Log In with OTP
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="isSentOTP">
+        <mat-form-field appearance="outline" class="w-full" [@expandCollapse]>
+          <mat-label>OTP</mat-label>
+          <input
+            matInput
+            type="tel"
+            class="tracking-widest"
+            inputmode="numeric"
+            autocomplete="off"
+            formControlName="otpCode"
+            minlength="6"
+            maxlength="6"
+            #otpRef
+          />
+          <mat-hint *ngIf="error" class="pt-2.5 pb-3">
+            {{ errorMessage }}
+          </mat-hint>
+        </mat-form-field>
+
+        <!-- Confirm Button -->
+        <button
+          mat-flat-button
+          class="w-full text-white bg-gray-700 rounded-md"
+          type="submit"
+          [disabled]="isLoading || !(otpCode.value && otpCode.valid)"
+        >
+          Confirm
+        </button>
+
+        <!-- Chage Number -->
+        <div class="flex justify-center my-2">
+          <button
+            mat-button
+            type="button"
+            class="text-indigo-500"
+            (click)="changePhone()"
+          >
+            Change Phone Number
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</form>
+
+<!-- for Google Recaptcha -->
+<div id="recaptcha"></div>

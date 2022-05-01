@@ -1,0 +1,2 @@
+/api/* https://etherio-pay.herokuapp.com/:splat 200
+/* /index.html 200

@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  # Manually trigger
+  workflow_dispatch:
+
+  # Trigger on push changes
+  push:
+    branches:
+      - master
+    paths:
+      - "src/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          cache: yarn
+      - name: Install
+        run: yarn
+      - name: Build
+        run: npx ng build
+      - name: Publish
+        run: |
+          git config --local user.name "Ethereal"
+          git config --local user.email "ethereal97@gmail.com"
+          git checkout --orphan static-site
+          git add -f dist
+          git commit -m "[Bot] Build by Github Action"
+          git push -f origin static-site
