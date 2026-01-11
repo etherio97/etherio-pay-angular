@@ -193,17 +193,17 @@
     tslib "^2.3.0"
     yargs "^17.2.1"
 
-"@angular/compiler@~13.2.1":
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-13.2.1.tgz#9f476a01472da1d6f72f0a9fcb20df7bf2044ede"
-  integrity sha512-CI3EFP8GwpTe+MFoEntWG4LQbq7rfCjP9ZVkKF1F5enA+CPZjYFGQ5qog3D5hnntMeQBU2iw7ZHNVlVfsmfTIQ==
+"@angular/compiler@~19.2.18":
+  version "19.2.18"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-19.2.18.tgz#c86f7126c9bd757bca180b2f98d0be57462bd162"
+  integrity sha512-3MscvODxRVxc3Cs0ZlHI5Pk5rEvE80otfvxZTMksOZuPlv1B+S8MjWfc3X3jk9SbyUEzODBEH55iCaBHD48V3g==
   dependencies:
     tslib "^2.3.0"
 
-"@angular/core@~13.2.1":
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-13.2.1.tgz#f5c1cd65bda3500e63fb32f8321788f7656c8bab"
-  integrity sha512-+V/ZUuMqXDXM5Moo9wWbkM9O55POqAyP0oECoYvVStCDLDXGfWGOSysJIbsp07dsoEx8/kmKWV7Q7ZdHMTVvJg==
+"@angular/core@~19.2.18":
+  version "19.2.18"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-19.2.18.tgz#50e561c20e98e5339ce351f207d6d7aeecf10f85"
+  integrity sha512-+QRrf0Igt8ccUWXHA+7doK5W6ODyhHdqVyblSlcQ8OciwkzIIGGEYNZom5OZyWMh+oI54lcSeyV2O3xaDepSrQ==
   dependencies:
     tslib "^2.3.0"
 
